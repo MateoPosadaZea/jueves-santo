@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jueves Santo</title>
+<meta name="theme-color" content="#0B1A14" id="thc">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20120%22%20width%3D%22480%22%20height%3D%22480%22%3E%20%20%3Cdefs%3E%20%20%20%20%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%220%22%20y2%3D%221%22%3E%20%20%20%20%20%20%3Cstop%20offset%3D%220%22%20stop-color%3D%22%231E5C36%22/%3E%20%20%20%20%20%20%3Cstop%20offset%3D%22.55%22%20stop-color%3D%22%23123F27%22/%3E%20%20%20%20%20%20%3Cstop%20offset%3D%221%22%20stop-color%3D%22%230B1A14%22/%3E%20%20%20%20%3C/linearGradient%3E%20%20%3C/defs%3E%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2227%22%20fill%3D%22url%28%23g%29%22/%3E%20%20%3Crect%20x%3D%227%22%20y%3D%227%22%20width%3D%22106%22%20height%3D%22106%22%20rx%3D%2221%22%20fill%3D%22none%22%20stroke%3D%22%23F3EFE2%22%20stroke-opacity%3D%22.18%22%20stroke-width%3D%222%22/%3E%20%20%3C%21--%20rayo%20detr%C3%A1s%20--%3E%20%20%3Cpolygon%20points%3D%2272%2C4%2040%2C62%2056%2C62%2034%2C116%2094%2C48%2074%2C48%2098%2C4%22%20fill%3D%22%23F5C400%22%20opacity%3D%22.95%22/%3E%20%20%3C%21--%20monograma%20JS%2C%20est%C3%A9ncil%20inclinado%20--%3E%20%20%3Cg%20transform%3D%22skewX%28-11%29%20translate%2813%2C0%29%22%20fill%3D%22%23F3EFE2%22%3E%20%20%20%20%3Crect%20x%3D%2246%22%20y%3D%2230%22%20width%3D%2213%22%20height%3D%2248%22/%3E%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2276%22%20width%3D%2231%22%20height%3D%2213%22/%3E%20%20%20%20%3Crect%20x%3D%2228%22%20y%3D%2262%22%20width%3D%2213%22%20height%3D%2214%22/%3E%20%20%20%20%3Crect%20x%3D%2266%22%20y%3D%2230%22%20width%3D%2232%22%20height%3D%2213%22/%3E%20%20%20%20%3Crect%20x%3D%2266%22%20y%3D%2253%22%20width%3D%2232%22%20height%3D%2213%22/%3E%20%20%20%20%3Crect%20x%3D%2266%22%20y%3D%2276%22%20width%3D%2232%22%20height%3D%2213%22/%3E%20%20%20%20%3Crect%20x%3D%2266%22%20y%3D%2230%22%20width%3D%2213%22%20height%3D%2230%22/%3E%20%20%20%20%3Crect%20x%3D%2285%22%20y%3D%2260%22%20width%3D%2213%22%20height%3D%2229%22/%3E%20%20%3C/g%3E%20%20%3Ccircle%20cx%3D%22102%22%20cy%3D%22100%22%20r%3D%226%22%20fill%3D%22%23F5C400%22/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAEUUlEQVR4nOza3WtTZwDH8eecnCTtVu3q4qawVdwco4yWhcEKY7MrCIPtevcK6pVee+e9t1ovRZReqPgCtV6qiYoW8aK+oSIISrG+Qm1M0ryc8/ikCUlt/fkH9Hw/5OXhnOcuX57nnCRBLpczwKcE7jkyMmKAj+Xz+aA5Gh8f//zUgYGBwcHBVCplEButOKw1f45s+3r9t5+aY29cuzw9PV0sFoeHh9PptEE8tOOwxYq182EYrZiRsJWaHRoa6utbd+nS5dHRv7u6ugxiwG++WRtV67ZUte8XolRgftoY9GcSbuwe5YUoDK2bs2XLj9nsr5OTk6VSySAGWitHFNnINtaPDV/5G/saB9NJL7s5de9ZxXURhuGNRe6453knT57asWO7wWrX2Vbc66b1ybXd3tLTUWTq9Xp2eHTr6LZkwoVhKuXShYnTBjHQXjkiF8iTF9VqPVw2w/e8gttcatb3TML3/DBqTEYMdFaOaPERRnbZDBdLLWwdDBJ+2rPNZQarXmflsIvXHDb63Advfduzds2uXTsNYmBpHNZtF80dw3US2tp8bdY3QU+QCfzWdxvdSe+HbxIG8dDZVuxiIu7GpFB79Wj+4s3Xx/xk4+K0N/Fdtu//zT1/bMqs+/n7boPYaH3P0Vg5GpekZrb8cOrt0Vtzx5tlOO/CmatvxordF5tlFAqFsbHDBjGw9FbWvq48vvvu3JPilWWTdv+2b2v/v25QqprHs3UuSGOivXLY99W5e3Pnn5amls3Y/9fhZhk3Z64fvH6gcVMTEUcstFeOaOrliRn/fmirS08f+uds5osNbnDm4ZHTD46sSWauPA/aSWF1a8VRLpf921/2m9/bJ3p7e/fu3dMcT0ycf3DnxS/mPzcueQv8MBsTXi6X488+WKnzZx9gJeKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IBEHJOKARByQiAMScUAiDkjEAYk4IDXiyOfzBljhAwAAAP//sFByIgAAAAZJREFUAwBmuTers6PcegAAAABJRU5ErkJggg==">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0B1A14;--grass:#1F6B3C;--grass2:#2E8A4E;--chalk:#F3EFE2;--chalk-dim:#B9B6A8;
+  --card:#15281F;--line:rgba(243,239,226,.14);--yellow:#F5C400;--red:#D8321F;
+  --display:'Bebas Neue',Impact,sans-serif;--body:'Work Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:var(--body);background:var(--night);color:var(--chalk);font-size:15px;line-height:1.45;
+  background-image:repeating-linear-gradient(90deg,transparent 0 56px,rgba(255,255,255,.012) 56px 112px)}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none}
+input,select{background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:10px;padding:11px 12px;width:100%;color:var(--chalk);outline:none}
+input:focus,select:focus{border-color:var(--yellow)}
+select option{color:#111}
+label{display:block;font-size:12px;color:var(--chalk-dim);letter-spacing:.08em;text-transform:uppercase;margin:12px 0 5px}
+h1,h2,h3{font-family:var(--display);font-weight:400;letter-spacing:.02em;line-height:1}
+h1{font-size:44px}h2{font-size:28px}h3{font-size:20px}
+.app{max-width:480px;margin:0 auto;min-height:100%;display:flex;flex-direction:column}
+header{padding:18px 20px 8px;display:flex;justify-content:space-between;align-items:flex-end}
+header .brand{font-family:var(--display);font-size:30px;letter-spacing:.06em}
+header .brand i{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--yellow);margin-left:6px;vertical-align:middle}
+header small{font-size:12px;color:var(--chalk-dim)}
+main{flex:1;padding:8px 20px 96px}
+.screen{display:none}.screen.on{display:block;animation:in .22s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(11,26,20,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
+nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav button{padding:6px 0;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--chalk-dim);display:flex;flex-direction:column;gap:3px;align-items:center}
+nav button span{font-size:20px;line-height:1}
+nav button.on{color:var(--yellow)}
+/* carta */
+.carta{position:relative;margin:10px auto 14px;width:100%;max-width:320px;aspect-ratio:3/4.3;border-radius:18px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 0%,rgba(245,196,0,.28),transparent 55%),linear-gradient(180deg,#1C5A34 0%,#123F27 55%,#0B1A14 100%);
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.8),inset 0 0 0 1px rgba(243,239,226,.18)}
+.carta::before{content:"";position:absolute;inset:14px;border:2px solid rgba(243,239,226,.22);border-radius:10px;pointer-events:none}
+.carta::after{content:"";position:absolute;left:50%;top:50%;width:120px;height:120px;margin:-60px 0 0 -60px;border:2px solid rgba(243,239,226,.10);border-radius:50%;pointer-events:none}
+.carta .ovr{position:absolute;left:26px;top:24px;text-align:center}
+.carta .ovr b{font-family:var(--display);font-size:64px;line-height:.85;display:block;color:var(--yellow)}
+.carta .ovr b.up{animation:pop .5s ease}
+.carta .ovr i{font-family:var(--display);font-style:normal;font-size:22px;letter-spacing:.1em;display:block;margin-top:4px}
+.carta .ovr em{font-style:normal;font-size:11px;color:var(--chalk-dim);letter-spacing:.12em;display:block;margin-top:6px}
+.carta .num{position:absolute;right:26px;top:24px;font-family:var(--display);font-size:34px;color:rgba(243,239,226,.45)}
+.carta .lvl{position:absolute;right:26px;top:64px;font-size:11px;letter-spacing:.1em;color:var(--yellow);text-transform:uppercase;text-align:right}
+.carta .foto{position:absolute;left:50%;top:31%;transform:translateX(-50%);width:145px;height:145px;border-radius:50%;object-fit:cover;background:rgba(0,0,0,.35);border:3px solid rgba(243,239,226,.25);display:flex;align-items:center;justify-content:center;font-size:58px;overflow:hidden}
+.carta .foto img{width:100%;height:100%;object-fit:cover}
+.carta .nom{position:absolute;left:0;right:0;top:66%;text-align:center;font-family:var(--display);font-size:30px;letter-spacing:.05em;padding:0 20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carta .meta{position:absolute;left:0;right:0;top:75%;text-align:center;font-size:12px;color:var(--chalk-dim);letter-spacing:.1em;text-transform:uppercase}
+.carta .stats{position:absolute;left:30px;right:30px;bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px 10px;font-family:var(--display);font-size:17px;letter-spacing:.08em}
+.carta .stats div{display:flex;justify-content:space-between;border-bottom:1px solid rgba(243,239,226,.12)}
+.carta .stats b{color:var(--yellow);font-weight:400}
+.carta.draft{opacity:.45;filter:grayscale(1)}
+.xpbar{max-width:320px;margin:0 auto 6px}
+.xpbar .bar{height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.xpbar .bar i{display:block;height:100%;background:var(--yellow);transition:width .6s ease}
+.xpbar small{display:flex;justify-content:space-between;font-size:11px;color:var(--chalk-dim);margin-top:4px;letter-spacing:.05em}
+.hint{text-align:center;color:var(--chalk-dim);font-size:13px;margin:4px 0 16px}
+/* rows */
+.row{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px;display:block;width:100%;text-align:left;transition:border-color .15s}
+button.row:active{border-color:var(--yellow)}
+.row .t{font-family:var(--display);font-size:22px;letter-spacing:.03em;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.row .t span{font-size:14px;color:var(--yellow);letter-spacing:.08em;white-space:nowrap}
+.row .s{font-size:13px;color:var(--chalk-dim);margin-top:4px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.tag{font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--chalk-dim)}
+.tag.y{color:var(--yellow);border-color:rgba(245,196,0,.5)}
+.tag.r{color:#ff8a7a;border-color:rgba(216,50,31,.6)}
+.tag.g{color:#8fe3a8;border-color:rgba(46,138,78,.7)}
+.cupos{height:5px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:12px;overflow:hidden}
+.cupos i{display:block;height:100%;background:var(--grass2)}
+.cupos i.full{background:var(--red)}
+.btn{display:block;width:100%;padding:14px;border-radius:12px;text-align:center;font-family:var(--display);font-size:21px;letter-spacing:.08em;background:var(--yellow);color:#1a1600;margin-top:14px}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--chalk)}
+.btn.sm{padding:9px;font-size:16px;margin-top:8px}
+.back{color:var(--chalk-dim);font-size:13px;margin-bottom:12px;display:inline-block}
+.kv{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.kv div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kv b{font-family:var(--display);font-size:24px;display:block;letter-spacing:.03em}
+.kv small{font-size:11px;color:var(--chalk-dim);letter-spacing:.1em;text-transform:uppercase}
+.sec{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--chalk-dim);margin:22px 0 10px;display:flex;justify-content:space-between;align-items:center}
+.empty{border:1px dashed var(--line);border-radius:14px;padding:22px;text-align:center;color:var(--chalk-dim);font-size:14px}
+.pl{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.pl .av{width:40px;height:40px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:18px;color:var(--yellow);border:1px solid var(--line);flex-shrink:0}
+.pl .n{flex:1;min-width:0}.pl .n small{display:block;color:var(--chalk-dim);font-size:12px}
+.pl .st{font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+.pl .st.p{color:var(--yellow)}.pl .st.a{color:#8fe3a8}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%) translateY(20px);background:var(--chalk);color:#111;padding:10px 16px;border-radius:999px;font-size:14px;font-weight:500;opacity:0;transition:.25s;pointer-events:none;white-space:nowrap;z-index:9}
+.toast.on{opacity:1;transform:translateX(-50%)}
+.tabla{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+.tabla th{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-dim);text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+.tabla td{padding:9px 4px;border-bottom:1px solid var(--line)}
+.tabla td:not(:first-child),.tabla th:not(:first-child){text-align:center}
+.tabla tr.me td{color:var(--yellow);font-weight:600}
+.tabla td:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:120px}
+.fotoin{display:flex;gap:12px;align-items:center}
+.fotoin .prev{width:56px;height:56px;border-radius:50%;background:var(--card);border:1px solid var(--line);overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0}
+.fotoin .prev img{width:100%;height:100%;object-fit:cover}
+/* misiones */
+.mision{display:flex;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:8px}
+.mision.done{border-color:rgba(46,138,78,.7)}
+.mision .ic{font-size:22px}
+.mision .tx{flex:1;font-size:14px}
+.mision .tx small{display:block;color:var(--chalk-dim);font-size:12px}
+.mision .xp{font-family:var(--display);font-size:18px;color:var(--yellow);letter-spacing:.05em}
+.mision.done .xp{color:#8fe3a8}
+/* stepper */
+.step{display:flex;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin-bottom:8px}
+.step .lb{font-size:14px}
+.step .ct{display:flex;align-items:center;gap:14px}
+.step .ct button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);font-size:20px;color:var(--yellow)}
+.step .ct b{font-family:var(--display);font-size:24px;min-width:24px;text-align:center}
+.res3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.res3 button{padding:12px 0;border-radius:12px;border:1px solid var(--line);font-family:var(--display);font-size:18px;letter-spacing:.06em;color:var(--chalk-dim)}
+.res3 button.sel{border-color:var(--yellow);color:var(--yellow);background:rgba(245,196,0,.08)}
+.gan{background:var(--card);border:1px solid var(--yellow);border-radius:14px;padding:18px;text-align:center;margin:14px 0}
+.gan b{font-family:var(--display);font-size:40px;color:var(--yellow);display:block;letter-spacing:.05em}
+.gan span{font-size:13px;color:var(--chalk-dim)}
+.racha{font-family:var(--display);font-size:15px;letter-spacing:.15em;color:var(--chalk-dim)}
+.racha b{color:var(--yellow);font-weight:400}
+/* ===== modo claro ===== */
+body.light{--night:#F6F4EC;--chalk:#17241C;--chalk-dim:#78745F;--card:#FFFFFF;--line:rgba(23,36,28,.15);
+  background-image:repeating-linear-gradient(90deg,transparent 0 56px,rgba(23,36,28,.02) 56px 112px)}
+body.light nav{background:rgba(246,244,236,.95)}
+body.light input,body.light select{background:rgba(23,36,28,.05)}
+body.light .toast{background:#17241C;color:#F6F4EC}
+body.light .carta .nom,body.light .carta .stats,body.light .carta .meta,body.light .carta .ovr i{color:#F3EFE2}
+body.light .carta .ovr em{color:#B9B6A8}
+body.light .tag.r{color:#B3261C}body.light .tag.g{color:#1F6B3C}
+body.light .pl .st.a{color:#1F6B3C}
+body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#A67F00}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand" style="font-size:24px;display:flex;align-items:center;gap:9px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="30" height="30">  <defs>    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">      <stop offset="0" stop-color="#1E5C36"/>      <stop offset=".55" stop-color="#123F27"/>      <stop offset="1" stop-color="#0B1A14"/>    </linearGradient>  </defs>  <rect x="0" y="0" width="120" height="120" rx="27" fill="url(#g)"/>  <rect x="7" y="7" width="106" height="106" rx="21" fill="none" stroke="#F3EFE2" stroke-opacity=".18" stroke-width="2"/>  <!-- rayo detrás -->  <polygon points="72,4 40,62 56,62 34,116 94,48 74,48 98,4" fill="#F5C400" opacity=".95"/>  <!-- monograma JS, esténcil inclinado -->  <g transform="skewX(-11) translate(13,0)" fill="#F3EFE2">    <rect x="46" y="30" width="13" height="48"/>    <rect x="28" y="76" width="31" height="13"/>    <rect x="28" y="62" width="13" height="14"/>    <rect x="66" y="30" width="32" height="13"/>    <rect x="66" y="53" width="32" height="13"/>    <rect x="66" y="76" width="32" height="13"/>    <rect x="66" y="30" width="13" height="30"/>    <rect x="85" y="60" width="13" height="29"/>  </g>  <circle cx="102" cy="100" r="6" fill="#F5C400"/></svg><span>JUEVES SANTO</span></div>
+  <div style="display:flex;align-items:center;gap:6px"><button id="b-mus" onclick="musToggle()" style="font-size:17px;opacity:.55" title="Música de menú">🎵</button><button id="b-th" onclick="themeToggle()" style="font-size:17px" title="Modo claro/oscuro">☀️</button><small id="hdr" style="margin-left:4px">Bogotá</small></div>
+</header>
+<main>
+
+<section class="screen on" id="s-inicio">
+  <div id="carta-box"></div>
+  <div class="xpbar" id="xpbar"></div>
+  <div class="hint" id="carta-hint"></div>
+  <div class="sec">Misiones de la semana <span class="racha" id="racha"></span></div>
+  <div id="misiones"></div>
+  <div class="sec">Mi temporada</div>
+  <div class="kv" id="temporada"></div>
+</section>
+
+<section class="screen" id="s-partido">
+  <h1>Registrar partido</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 14px">Lo que pasó en la cancha alimenta tu carta. Sin partido no hay progreso.</p>
+  <label>¿Cómo quedó?</label>
+  <div class="res3">
+    <button id="r-g" onclick="setRes('g')">Ganamos</button>
+    <button id="r-e" onclick="setRes('e')">Empate</button>
+    <button id="r-p" onclick="setRes('p')">Perdimos</button>
+  </div>
+  <div class="sec">Lo tuyo</div>
+  <div class="step"><div class="lb">⚽ Goles</div><div class="ct"><button onclick="stp('g',-1)">−</button><b id="c-g">0</b><button onclick="stp('g',1)">+</button></div></div>
+  <div class="step"><div class="lb">🎯 Asistencias</div><div class="ct"><button onclick="stp('a',-1)">−</button><b id="c-a">0</b><button onclick="stp('a',1)">+</button></div></div>
+  <div class="step" id="valla-row"><div class="lb">🧤 Arco en cero</div><div class="ct"><button onclick="tglValla()" id="valla-btn" style="width:auto;padding:0 16px;border-radius:999px;font-size:13px;font-family:var(--body)">No</button></div></div>
+  <label>¿Contra quién? (opcional)</label>
+  <input id="p-rival" placeholder="Los Pelaos, Barrio Unido…" maxlength="24" list="rivales-dl"><datalist id="rivales-dl"></datalist>
+  <button class="btn" onclick="regPartido()">Guardar partido</button>
+  <div class="sec">Últimos partidos</div>
+  <div id="hist"></div>
+</section>
+
+<section class="screen" id="s-parche">
+  <h1>El parche</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 6px">La tabla del grupo. Aquí es donde duele.</p>
+  <button class="btn" onclick="go('armar')">⚡ Armar equipos de hoy</button>
+  <div class="sec">Este mes</div>
+  <table class="tabla" id="lb"></table>
+  <p style="font-size:12px;color:var(--chalk-dim);margin-top:14px">Los demás son jugadores simulados para probar la sensación. En la app real serían tus amigos, cada uno registrando sus partidos.</p>
+  <div class="sec">Rivalidades</div>
+  <div id="rivales"></div>
+</section>
+
+<section class="screen" id="s-armar">
+  <button class="back" onclick="go('parche')">← Parche</button>
+  <h1>Equipos del jueves</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 6px">Marca quién vino. Potrero arma equipos de 4 parejos usando el overall de cada carta. Si sobran, esperan la primera reta.</p>
+  <div class="sec">¿Quién está en la cancha?</div>
+  <div id="asis"></div>
+  <div style="display:flex;gap:8px;margin-top:10px"><input id="inv-n" placeholder="Invitado (parcero de alguien)" maxlength="14" style="flex:2"><select id="inv-lvl" style="flex:1"><option value="50">Normal</option><option value="58">Bueno</option><option value="66">Crack</option></select></div>
+  <button class="btn ghost sm" onclick="addInv()">Agregar invitado</button>
+  <button class="btn" onclick="armar()">⚡ Armar equipos de 4</button>
+  <div id="equipos-out"></div>
+</section>
+
+<section class="screen" id="s-lista">
+  <h1>La lista</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 6px">Este jueves · $15.000 por cabeza al Nequi. Toca cada nombre: confirmó → pagó. El que no paga, por fuera 😅.</p>
+  <div class="kv" id="lista-kv" style="grid-template-columns:repeat(3,1fr)"></div>
+  <div id="lista-box"></div>
+  <button class="btn ghost" onclick="cerrarLista()">🔒 Cerrar lista (saca a los que no pagaron)</button>
+  <button class="btn sm" onclick="copiarRec()">💬 Copiar recordatorio para el chat</button>
+</section>
+
+<section class="screen" id="s-noche">
+  <h1 id="noche-h">La noche</h1>
+  <div id="noche-box"></div>
+</section>
+
+<section class="screen" id="s-torneos">
+  <h1>Torneos</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 14px">Dónde se juega esta semana cerca tuyo.</p>
+  <div id="torneos-list"></div>
+</section>
+<section class="screen" id="s-torneo">
+  <button class="back" onclick="go('torneos')">← Torneos</button>
+  <div id="torneo-det"></div>
+</section>
+
+<section class="screen" id="s-perfil">
+  <h1>Mi perfil</h1>
+  <p style="color:var(--chalk-dim);font-size:13px;margin-top:4px">Todos arrancan igual. La carta la subes jugando.</p>
+  <label>Foto</label>
+  <div class="fotoin"><div class="prev" id="foto-prev">🙂</div><input type="file" accept="image/*" id="foto" style="flex:1"></div>
+  <label>Nombre o apodo</label><input id="f-nombre" placeholder="Cómo te dicen en la cancha" maxlength="18">
+  <label>Posición</label>
+  <select id="f-pos"><option>ARQ</option><option>DEF</option><option>LAT</option><option selected>MED</option><option>VOL</option><option>EXT</option><option>DEL</option></select>
+  <label>Dorsal</label><input id="f-num" type="number" min="1" max="99" value="10">
+  <label>Pie</label>
+  <select id="f-pie"><option>Derecho</option><option>Izquierdo</option><option>Ambos</option></select>
+  <label>Barrio / localidad</label><input id="f-barrio" placeholder="Chapinero, Suba, Kennedy…">
+  <button class="btn" onclick="savePerfil()">Guardar</button>
+  <button class="btn ghost sm" style="margin-top:20px;color:var(--red)" onclick="if(confirm('¿Borrar todo y empezar de cero?')){try{localStorage.removeItem('cancha_v2')}catch(e){};location.reload()}">Reiniciar prototipo</button>
+</section>
+
+</main>
+<nav><div class="in">
+  <button class="on" data-s="inicio" onclick="go('inicio')"><span>🪪</span>Carta</button>
+  <button data-s="partido" onclick="go('partido')"><span>⚽</span>Partido</button>
+  <button data-s="parche" onclick="go('parche')"><span>🔥</span>Parche</button>
+  <button data-s="lista" onclick="go('lista')"><span>📋</span>Lista</button>
+  <button data-s="perfil" onclick="go('perfil')"><span>⚙️</span>Perfil</button>
+</div></nav>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== datos ===== */
+const STATS=[['RIT','Ritmo'],['TIR','Tiro'],['PAS','Pase'],['REG','Regate'],['DEF','Defensa'],['FIS','Físico']];
+const TORNEOS=[
+ {id:'t1',nombre:'Liga Nocturna Chapinero',cancha:'Cancha La 57',dir:'Cl. 57 #13-40',tipo:'Fútbol 7',superficie:'Sintética',dia:'Martes y jueves',hora:'8:00 – 10:00 pm',inicio:'2 sep',equipos:12,cupos:10,precio:280000,premio:'1.200.000 + trofeo',formato:'Todos contra todos + playoffs',org:'Don Wilmer',tel:'310 555 0101'},
+ {id:'t2',nombre:'Copa Suba Fútbol 5',cancha:'Complejo El Rincón',dir:'Cra. 91 #129-15',tipo:'Fútbol 5',superficie:'Sintética techada',dia:'Sábados',hora:'2:00 – 6:00 pm',inicio:'6 sep',equipos:16,cupos:16,precio:180000,premio:'800.000',formato:'Grupos + eliminación',org:'Liga Suba',tel:'320 555 0202'},
+ {id:'t3',nombre:'Torneo Relámpago Kennedy',cancha:'Polideportivo Timiza',dir:'Cl. 42 Sur #72-40',tipo:'Fútbol 8',superficie:'Césped natural',dia:'Domingo 31 ago',hora:'8:00 am – 4:00 pm',inicio:'31 ago',equipos:8,cupos:8,precio:120000,premio:'Asado para el equipo',formato:'Un día, eliminación directa',org:'Junta de Acción Comunal',tel:'301 555 0303'},
+ {id:'t4',nombre:'Liga Empresarial Norte',cancha:'Canchas Calle 170',dir:'Cl. 170 #8-20',tipo:'Fútbol 7',superficie:'Sintética',dia:'Miércoles',hora:'7:00 – 9:00 pm',inicio:'10 sep',equipos:10,cupos:10,precio:350000,premio:'Copa + kit de uniformes',formato:'Liga larga, 18 fechas',org:'Sportcity',tel:'315 555 0404'},
+];
+const PARCHE=[
+ {n:'Sebas',pos:'DEL',pj:7,g:9,a:2,racha:3,xp:820},
+ {n:'Juancho',pos:'MED',pj:8,g:3,a:7,racha:1,xp:790},
+ {n:'El Mono',pos:'ARQ',pj:6,g:0,a:1,racha:2,xp:610},
+ {n:'Camilo',pos:'DEF',pj:5,g:1,a:0,racha:0,xp:430},
+ {n:'Pipe',pos:'EXT',pj:4,g:4,a:3,racha:0,xp:505},
+];
+const MISIONES=[
+ {id:'m1',ic:'⚽',tx:'Juega 2 partidos esta semana',xp:60,check:w=>w.length>=2,prog:w=>Math.min(w.length,2)+'/2'},
+ {id:'m2',ic:'🥅',tx:'Marca o asiste en un partido',xp:40,check:w=>w.some(p=>p.g>0||p.a>0),prog:w=>w.some(p=>p.g>0||p.a>0)?'1/1':'0/1'},
+ {id:'m3',ic:'🏆',tx:'Gana un partido',xp:40,check:w=>w.some(p=>p.res==='g'),prog:w=>w.some(p=>p.res==='g')?'1/1':'0/1'},
+];
+
+/* ===== progresión ===== */
+const BASE=52,MAXOVR=94;
+function nivel(xp){let l=1,need=100,acc=0;while(xp>=acc+need&&l<40){acc+=need;l++;need=Math.round(need*1.18)}return{l,into:xp-acc,need}}
+function overall(p){return Math.min(MAXOVR,BASE+ (nivel(p.xp).l-1)*2)}
+// stats derivadas de hechos reales
+function statVal(p,k){
+  const h=p.hist,ov=overall(p);
+  const bump={TIR:h.g*1.5,PAS:h.a*1.5,DEF:h.vallas*2,FIS:h.pj*.6,RIT:h.pj*.5,REG:(h.g+h.a)*.5}[k]||0;
+  return Math.min(96,Math.round(BASE-6+bump+(ov-BASE)*.8));
+}
+
+/* ===== estado ===== */
+let S={perfil:null,inscritos:[],partidos:[]};
+const mem={};
+function load(){try{const r=localStorage.getItem('cancha_v2');if(r)S=JSON.parse(r)}catch(e){if(mem.s)S=mem.s}}
+function save(){try{localStorage.setItem('cancha_v2',JSON.stringify(S))}catch(e){mem.s=S}}
+load();
+
+const $=id=>document.getElementById(id);
+const cop=n=>'$'+n.toLocaleString('es-CO');
+function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2100)}
+function esc(s){return String(s).replace(/[<>&"]/g,c=>({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]))}
+function go(s){document.querySelectorAll('.screen').forEach(e=>e.classList.remove('on'));$('s-'+s).classList.add('on');
+  document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s===s||(s==='torneo'&&b.dataset.s==='torneos')));
+  window.scrollTo(0,0);render();if(s==='armar')renderAsis();if(s==='noche')renderNoche();if(s==='lista')renderLista()}
+function semana(){const now=Date.now();return S.partidos.filter(p=>now-p.t<7*864e5)}
+function rachaCalc(){let r=0;for(const p of S.partidos){if(p.res==='g')r++;else break}return r}
+
+/* ===== carta ===== */
+function cartaHTML(p){
+  if(!p)return `<div class="carta draft"><div class="ovr"><b>--</b><i>POS</i><em>PIE</em></div><div class="num">#--</div><div class="foto">🙂</div><div class="nom">TU NOMBRE</div><div class="meta">Crea tu perfil</div><div class="stats">${STATS.map(([k])=>`<div>${k}<b>--</b></div>`).join('')}</div></div>`;
+  const nv=nivel(p.xp);
+  return `<div class="carta">
+    <div class="ovr"><b id="ovr-n">${overall(p)}</b><i>${p.pos}</i><em>${p.pie.slice(0,3).toUpperCase()}</em></div>
+    <div class="num">#${p.num}</div><div class="lvl">Nivel ${nv.l}</div>
+    <div class="foto">${p.foto?`<img src="${p.foto}" alt="">`:'🙂'}</div>
+    <div class="nom">${esc(p.nombre)}</div>
+    <div class="meta">${esc(p.barrio||'Bogotá')} · ${p.hist.pj} PJ</div>
+    <div class="stats">${STATS.map(([k])=>`<div>${k}<b>${statVal(p,k)}</b></div>`).join('')}</div>
+  </div>`}
+
+/* ===== render ===== */
+function render(){
+  const p=S.perfil;
+  $('hdr').textContent=p?`Nivel ${nivel(p.xp).l} · ${p.pos} #${p.num}`:'Bogotá · prototipo';
+  $('carta-box').innerHTML=cartaHTML(p);
+  if(p){const nv=nivel(p.xp);
+    $('xpbar').innerHTML=`<div class="bar"><i style="width:${nv.into/nv.need*100}%"></i></div><small><span>Nivel ${nv.l}</span><span>${nv.into} / ${nv.need} XP</span></small>`;
+    $('carta-hint').innerHTML=`El overall solo sube jugando. <a href="#" onclick="go('partido');return false" style="color:var(--yellow)">Registrar partido →</a>`;
+  }else{$('xpbar').innerHTML='';$('carta-hint').innerHTML=`Arma tu perfil en <a href="#" onclick="go('perfil');return false" style="color:var(--yellow)">Perfil</a>. El resto se gana en la cancha.`}
+  if(S.night&&!S.night.fin)$('carta-hint').innerHTML=`🔴 Hay una noche en curso — <a href="#" onclick="go('noche');return false" style="color:var(--yellow)">volver a la reta #${S.night.reta}</a>`;
+  const r=rachaCalc();
+  $('racha').innerHTML=r>1?`Racha <b>${r} 🔥</b>`:'';
+  const w=semana();
+  $('misiones').innerHTML=MISIONES.map(m=>{const done=m.check(w);return `<div class="mision ${done?'done':''}"><div class="ic">${m.ic}</div><div class="tx">${m.tx}<small>${done?'Cumplida esta semana':m.prog(w)}</small></div><div class="xp">${done?'✓':'+'+m.xp}</div></div>`}).join('');
+  const h=p?p.hist:{pj:0,g:0,a:0,vallas:0,v:0};
+  $('temporada').innerHTML=`<div><b>${h.pj}</b><small>Partidos</small></div><div><b>${h.v||0}</b><small>Victorias</small></div><div><b>${h.g}</b><small>Goles</small></div><div><b>${h.a}</b><small>Asistencias</small></div>`;
+  // partido screen
+  $('valla-row').style.display=p&&(p.pos==='ARQ'||p.pos==='DEF')?'flex':'none';
+  $('hist').innerHTML=S.partidos.length?S.partidos.slice(0,6).map(x=>{
+    const lbl={g:'Victoria',e:'Empate',p:'Derrota'}[x.res];
+    return `<div class="row"><div class="t">${lbl}${x.rival?' vs '+esc(x.rival):''}<span>+${x.xp} XP</span></div><div class="s">${x.g} gol${x.g!==1?'es':''} · ${x.a} asist. · ${new Date(x.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div></div>`}).join('')
+    :'<div class="empty">Todavía nada. El primer partido es el que arranca la carrera.</div>';
+  // parche
+  const rows=[...PARCHE.map(f=>({...f,me:false})),p?{n:p.nombre,pos:p.pos,pj:h.pj,g:h.g,a:h.a,racha:r,xp:p.xp,me:true}:null].filter(Boolean).sort((a,b)=>b.xp-a.xp);
+  $('lb').innerHTML=`<tr><th>Jugador</th><th>PJ</th><th>G</th><th>A</th><th>🔥</th><th>XP</th></tr>`+rows.map((f,i)=>`<tr class="${f.me?'me':''}"><td>${i+1}. ${esc(f.n)}${f.me?' (tú)':''}</td><td>${f.pj}</td><td>${f.g}</td><td>${f.a}</td><td>${f.racha||''}</td><td>${f.xp}</td></tr>`).join('');
+  // rivalidades: head-to-head por rival, calculado de los partidos
+  const rivMap={};
+  S.partidos.forEach(x=>{if(!x.rival)return;const k=x.rival.toLowerCase();
+    if(!rivMap[k])rivMap[k]={n:x.rival,g:0,e:0,p:0,ult:null};
+    rivMap[k][x.res]++;if(!rivMap[k].ult)rivMap[k].ult=x});
+  const rivs=Object.values(rivMap).sort((a,b)=>(b.g+b.e+b.p)-(a.g+a.e+a.p));
+  $('rivales').innerHTML=rivs.length?rivs.map(v=>{
+    const tot=v.g+v.e+v.p,dom=v.g>v.p?'g':v.p>v.g?'p':'e';
+    const tag={g:'<span class="tag g">Los dominas</span>',p:'<span class="tag r">Te dominan</span>',e:'<span class="tag y">Parejo</span>'}[dom];
+    const ult={g:'victoria',e:'empate',p:'derrota'}[v.ult.res];
+    return `<div class="row"><div class="t">vs ${esc(v.n)}<span>${v.g}–${v.e}–${v.p}</span></div>
+      <div class="s">${tot} partido${tot!==1?'s':''} · último: ${ult} el ${new Date(v.ult.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div>
+      <div class="tags">${tag}</div></div>`}).join('')
+    :'<div class="empty">Pon "¿contra quién?" al registrar tus partidos y aquí nace el historial: victorias–empates–derrotas contra cada rival.</div>';
+  $('rivales-dl').innerHTML=rivs.map(v=>`<option value="${esc(v.n)}">`).join('');
+  // torneos
+  $('torneos-list').innerHTML=TORNEOS.map(t=>{const ins=S.inscritos.includes(t.id);const ocup=t.equipos-t.cupos+(ins?1:0);return `<button class="row" onclick="verTorneo('${t.id}')">
+    <div class="t">${t.nombre}<span>${cop(t.precio)}</span></div>
+    <div class="s">${t.dia} · ${t.hora}<br>${t.cancha} · ${t.superficie}</div>
+    <div class="tags"><span class="tag y">${t.tipo}</span>${ins?'<span class="tag g">Inscrito</span>':`<span class="tag">${t.equipos-ocup} cupos</span>`}</div>
+    <div class="cupos"><i style="width:${ocup/t.equipos*100}%"></i></div></button>`}).join('');
+  renderPerfilForm();
+}
+
+function verTorneo(id){const t=TORNEOS.find(x=>x.id===id);const ins=S.inscritos.includes(id);
+  $('torneo-det').innerHTML=`<h1>${t.nombre}</h1>
+  <div class="tags" style="margin-top:8px"><span class="tag y">${t.tipo}</span><span class="tag">${t.superficie}</span><span class="tag">${t.equipos} equipos</span></div>
+  <div class="kv"><div><b>${t.dia}</b><small>Día</small></div><div><b>${t.hora}</b><small>Hora</small></div><div><b>${cop(t.precio)}</b><small>Por equipo</small></div><div><b>${t.inicio}</b><small>Inicia</small></div></div>
+  <div class="sec">Cancha</div><div class="row"><div class="t">${t.cancha}</div><div class="s">${t.dir}</div></div>
+  <div class="sec">Formato</div><p style="font-size:14px">${t.formato}. Premio: ${t.premio}.</p>
+  <div class="sec">Organiza</div><p style="font-size:14px">${t.org} · ${t.tel}</p>
+  ${ins?`<button class="btn ghost" onclick="S.inscritos=S.inscritos.filter(x=>x!=='${t.id}');save();toast('Retirado');verTorneo('${t.id}')">Retirarme</button>`
+  :`<button class="btn" onclick="S.inscritos.push('${t.id}');save();toast('Inscrito ⚽ Los partidos de torneo darán XP doble');verTorneo('${t.id}')">Inscribirme</button>`}`;
+  go('torneo')}
+
+/* ===== registrar partido ===== */
+let form={res:null,g:0,a:0,valla:false};
+function setRes(r){form.res=r;['g','e','p'].forEach(x=>$('r-'+x).classList.toggle('sel',x===r))}
+function stp(k,d){form[k]=Math.max(0,Math.min(15,form[k]+d));$('c-'+k).textContent=form[k]}
+function tglValla(){form.valla=!form.valla;$('valla-btn').textContent=form.valla?'Sí 🧤':'No';$('valla-btn').style.color=form.valla?'var(--yellow)':''}
+function regPartido(){
+  if(!S.perfil){toast('Primero crea tu perfil');go('perfil');return}
+  if(!form.res){toast('¿Ganaron, empataron o perdieron?');return}
+  const wBefore=MISIONES.filter(m=>m.check(semana()));
+  const lvlBefore=nivel(S.perfil.xp).l;
+  let xp=50+{g:30,e:10,p:0}[form.res]+form.g*20+form.a*15+(form.valla?25:0);
+  const par={t:Date.now(),res:form.res,g:form.g,a:form.a,valla:form.valla,rival:$('p-rival').value.trim(),xp:0};
+  S.partidos.unshift(par);
+  const h=S.perfil.hist;h.pj++;h.g+=form.g;h.a+=form.a;if(form.valla)h.vallas++;if(form.res==='g')h.v=(h.v||0)+1;
+  // misiones nuevas cumplidas dan bonus
+  let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
+  xp+=bonus;par.xp=xp;S.perfil.xp+=xp;save();
+  const lvlAfter=nivel(S.perfil.xp).l;
+  $('p-rival').value='';form={res:null,g:0,a:0,valla:false};$('c-g').textContent=0;$('c-a').textContent=0;
+  ['g','e','p'].forEach(x=>$('r-'+x).classList.remove('sel'));$('valla-btn').textContent='No';$('valla-btn').style.color='';
+  go('inicio');
+  const ovrEl=$('ovr-n');if(ovrEl)ovrEl.classList.add('up');
+  toast(lvlAfter>lvlBefore?`+${xp} XP · ¡Subiste a nivel ${lvlAfter}! 🎉`:`+${xp} XP${bonus?` (misión +${bonus})`:''}`)
+}
+
+/* ===== perfil ===== */
+let fotoTmp=null;
+function renderPerfilForm(){const p=S.perfil;
+  if(p&&!$('f-nombre').value){$('f-nombre').value=p.nombre;$('f-pos').value=p.pos;$('f-num').value=p.num;$('f-pie').value=p.pie;$('f-barrio').value=p.barrio||'';if(p.foto)$('foto-prev').innerHTML=`<img src="${p.foto}">`}}
+$('foto').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;const img=new Image();const r=new FileReader();
+  r.onload=()=>{img.onload=()=>{const c=document.createElement('canvas');const s=Math.min(img.width,img.height);c.width=c.height=320;
+    c.getContext('2d').drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,320,320);fotoTmp=c.toDataURL('image/jpeg',.8);$('foto-prev').innerHTML=`<img src="${fotoTmp}">`};img.src=r.result};r.readAsDataURL(f)});
+function savePerfil(){const nombre=$('f-nombre').value.trim();if(!nombre){toast('¿Cómo te dicen en la cancha?');return}
+  const prev=S.perfil;
+  S.perfil={nombre,pos:$('f-pos').value,num:+$('f-num').value||10,pie:$('f-pie').value,barrio:$('f-barrio').value.trim(),
+    foto:fotoTmp||prev?.foto||null,xp:prev?.xp||0,hist:prev?.hist||{pj:0,g:0,a:0,vallas:0,v:0}};
+  save();toast(prev?'Perfil actualizado':'Listo. Ahora, a jugar');go('inicio')}
+
+/* ===== la lista del jueves ===== */
+const GRUPO=['Sebas','Juancho','El Mono','Camilo','Pipe','Andrés','Santi','Dani','Lucho','Nico','Tato','Richi','Memo','Leo','Fercho','Julián','Pacho','Óscar','Beto'];
+const CUPOS=12,PRECIO=15000;
+function listaInit(){if(!S.lista)S.lista={est:{},orden:[]};return S.lista}
+function nombresGrupo(){const arr=[...GRUPO];if(S.perfil&&!arr.includes(S.perfil.nombre))arr.unshift(S.perfil.nombre);return arr}
+function tapLista(n){const L=listaInit();const e=L.est[n]||0;
+  if(e===0){L.est[n]=1;L.orden.push(n)}
+  else if(e===1){L.est[n]=2}
+  else{L.est[n]=0;L.orden=L.orden.filter(x=>x!==n)}
+  save();renderLista()}
+function confirmados(){const L=listaInit();return L.orden.filter(n=>(L.est[n]||0)>=1)}
+function cerrarLista(){const L=listaInit();let out=0;
+  [...L.orden].forEach(n=>{if(L.est[n]===1){L.est[n]=0;L.orden=L.orden.filter(x=>x!==n);out++}});
+  save();renderLista();toast(out?`${out} por fuera por no pagar 😅`:'Todos al día 👏')}
+function copiarRec(){const L=listaInit();const conf=confirmados();
+  const dentro=conf.slice(0,CUPOS),pag=dentro.filter(n=>L.est[n]===2),deben=dentro.filter(n=>L.est[n]===1);
+  let msg=`⚽ JUEVES SANTO ⚽\nCupos: ${dentro.length}/${CUPOS}\n\n`;
+  msg+=`✅ Pagaron (${pag.length}): ${pag.join(', ')||'nadie todavía'}\n`;
+  if(deben.length)msg+=`⏳ Deben ($${PRECIO.toLocaleString('es-CO')} al Nequi): ${deben.join(', ')}\n`;
+  if(conf.length>CUPOS)msg+=`🪑 Lista de espera: ${conf.slice(CUPOS).join(', ')}\n`;
+  msg+=`\nEl que no pague antes del jueves, cede el cupo. Sin excepciones 😌`;
+  const done=()=>toast('Copiado. Péguelo en el grupo 💬');
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(msg).then(done).catch(()=>{prompt('Copia el mensaje:',msg)})}
+  else prompt('Copia el mensaje:',msg)}
+function renderLista(){const L=listaInit();const conf=confirmados();
+  const pag=conf.filter(n=>L.est[n]===2);
+  $('lista-kv').innerHTML=`<div><b>${Math.min(conf.length,CUPOS)}/${CUPOS}</b><small>Cupos</small></div><div><b>${pag.length}</b><small>Pagaron</small></div><div><b>$${(pag.length*PRECIO/1000)}k</b><small>En el Nequi</small></div>`;
+  $('lista-box').innerHTML=nombresGrupo().map(n=>{const e=L.est[n]||0;
+    const idx=conf.indexOf(n),espera=e>=1&&idx>=CUPOS;
+    const st=e===2?'<span class="st a">💸 Pagó</span>':e===1?'<span class="st p">Falta pago</span>':'<span class="st" style="color:var(--chalk-dim)">—</span>';
+    return `<div class="pl" onclick="tapLista('${esc(n)}')" style="cursor:pointer;${e===0?'opacity:.45':''}">
+      <div class="av">${e>=1?idx+1:'·'}</div>
+      <div class="n">${esc(n)}${S.perfil&&n===S.perfil.nombre?' (tú)':''}${espera?'<small>Lista de espera</small>':''}</div>${st}</div>`}).join('');
+}
+
+/* ===== armar equipos ===== */
+let invitados=[],nTeams=2,asisSel={};
+function ovrDe(x){return Math.min(MAXOVR,BASE+(nivel(x.xp).l-1)*2)}
+function jugadorDe(n){
+  if(S.perfil&&n===S.perfil.nombre)return{n:n+' (tú)',pos:S.perfil.pos,ovr:overall(S.perfil)};
+  const f=PARCHE.find(x=>x.n===n);
+  return f?{n,pos:f.pos,ovr:ovrDe(f)}:{n,pos:'JUG',ovr:50};
+}
+function poolHoy(){
+  const L=S.lista,conf=L?L.orden.filter(n=>L.est[n]===2).slice(0,CUPOS):[];
+  if(conf.length)return conf.map(jugadorDe).concat(invitados);
+  const arr=PARCHE.map(f=>({n:f.n,pos:f.pos,ovr:ovrDe(f)}));
+  if(S.perfil)arr.unshift({n:S.perfil.nombre+' (tú)',pos:S.perfil.pos,ovr:overall(S.perfil)});
+  return arr.concat(invitados);
+}
+function renderAsis(){
+  $('asis').innerHTML=poolHoy().map((j,i)=>{const on=asisSel[j.n]!==false;
+    return `<div class="pl" onclick="asisSel['${esc(j.n)}']=${on?'false':'true'};renderAsis()" style="cursor:pointer;opacity:${on?1:.4}">
+      <div class="av">${j.pos}</div><div class="n">${esc(j.n)}<small>Overall ${j.ovr}</small></div>
+      <div class="st ${on?'a':''}">${on?'✓ Juega':'No vino'}</div></div>`}).join('');
+}
+function addInv(){const n=$('inv-n').value.trim();if(!n){toast('Nombre del invitado');return}
+  invitados.push({n,pos:'JUG',ovr:+$('inv-lvl').value});$('inv-n').value='';renderAsis();toast(n+' agregado')}
+const TAM=4; // jueves: equipos de 4
+function armar(){
+  const jug=poolHoy().filter(j=>asisSel[j.n]!==false);
+  if(jug.length<TAM*2){toast('Mínimo '+TAM*2+' para armar dos equipos');return}
+  const nT=Math.floor(jug.length/TAM);
+  // los que sobran esperan la primera reta (al azar, para que sea justo)
+  const barajado=[...jug].sort(()=>Math.random()-.5);
+  const espera=barajado.slice(nT*TAM);
+  const juegan=barajado.slice(0,nT*TAM);
+  // orden por overall con algo de azar, asignando siempre al equipo más flojo que tenga cupo
+  const orden=[...juegan].sort((a,b)=>(b.ovr+Math.random()*4)-(a.ovr+Math.random()*4));
+  const eqs=Array.from({length:nT},()=>[]);
+  orden.forEach(j=>{
+    const cand=eqs.map((e,k)=>k).filter(k=>eqs[k].length<TAM)
+      .sort((a,b)=>eqs[a].reduce((s,x)=>s+x.ovr,0)-eqs[b].reduce((s,x)=>s+x.ovr,0));
+    eqs[cand[0]].push(j);
+  });
+  const NOM=['NARANJA 🟠','VERDE 🟢','BLANCO ⚪','AZUL 🔵','ROJO 🔴','NEGRO ⚫'];
+  const ps=eqs.map(e=>e.reduce((s,x)=>s+x.ovr,0)/TAM);
+  $('equipos-out').innerHTML=eqs.map((e,k)=>{
+    return `<div class="sec" style="margin-top:18px">Equipo ${NOM[k]} <span style="letter-spacing:0;text-transform:none">Prom. ${Math.round(ps[k])}</span></div>
+    ${e.map(j=>`<div class="pl"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`}).join('')
+    +(espera.length?`<div class="sec" style="margin-top:18px">Esperan la primera reta</div>${espera.map(j=>`<div class="pl" style="opacity:.6"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`:'')
+    +`<button class="btn ghost sm" onclick="armar()">🔀 Volver a barajar</button>
+    <button class="btn" onclick="startNoche()">▶️ Arrancar la noche</button>
+    <p style="font-size:12px;color:var(--chalk-dim);margin-top:10px">${nT} equipos de ${TAM}. Diferencia entre el más fuerte y el más flojo: ${Math.round(Math.max(...ps)-Math.min(...ps))} puntos de promedio.</p>`;
+  ultEqs={eqs,espera};
+}
+let ultEqs=null;
+
+/* ===== la noche: retas en vivo ===== */
+const NOMN=['NARANJA 🟠','VERDE 🟢','BLANCO ⚪','AZUL 🔵','ROJO 🔴','NEGRO ⚫'];
+function startNoche(){
+  if(!ultEqs)return;
+  // los que esperaban entran como equipo si alcanzan; si no, entran en la cola de reemplazo simple
+  const teams=ultEqs.eqs.map((e,k)=>({nom:NOMN[k],players:e,racha:0}));
+  const st={};teams.forEach(t=>t.players.forEach(p=>st[p.n]={j:0,g:0,mejor:0}));
+  ultEqs.espera.forEach(p=>st[p.n]={j:0,g:0,mejor:0});
+  S.night={teams,espera:ultEqs.espera,court:[0,1],queue:teams.map((_,k)=>k).slice(2),reta:1,st,fin:false};
+  save();go('noche')}
+function ganaReta(w){
+  const N=S.night,[a,b]=N.court,gan=N.court[w],per=N.court[1-w];
+  const G=N.teams[gan],P=N.teams[per];
+  G.racha++;P.racha=0;
+  [a,b].forEach(k=>N.teams[k].players.forEach(p=>N.st[p.n].j++));
+  G.players.forEach(p=>{N.st[p.n].g++;N.st[p.n].mejor=Math.max(N.st[p.n].mejor,G.racha)});
+  N.reta++;
+  if(N.queue.length){N.queue.push(per);N.court=[gan,N.queue.shift()]}
+  save();renderNoche();
+  toast(`Reta para ${G.nom} · racha ${G.racha} 🔥`)}
+function renderNoche(){
+  const N=S.night;if(!N){$('noche-box').innerHTML='<div class="empty">No hay noche activa. Arma los equipos primero.</div>';return}
+  if(N.fin){renderCierre();return}
+  const [a,b]=N.court,TA=N.teams[a],TB=N.teams[b];
+  $('noche-h').textContent='Reta #'+N.reta;
+  const tj=t=>`<div style="flex:1"><button class="btn" style="margin-top:0" onclick="ganaReta(${N.court.indexOf(N.teams.indexOf(t))})">Ganó ${t.nom}</button>
+    <p style="text-align:center;font-size:12px;color:var(--chalk-dim);margin-top:6px">${t.racha?`Racha ${t.racha} 🔥`:'&nbsp;'}</p>
+    ${t.players.map(p=>`<div class="pl" style="padding:6px 0"><div class="n" style="font-size:13px">${esc(p.n)}</div></div>`).join('')}</div>`;
+  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 14px">A dos goles. El que gana se queda. Un solo toque por reta — lo marca el que espera turno.</p>
+    <div style="display:flex;gap:12px;align-items:flex-start">${tj(TA)}<div style="font-family:var(--display);font-size:22px;padding-top:12px;color:var(--chalk-dim)">VS</div>${tj(TB)}</div>
+    ${N.queue.length?`<div class="sec">Esperan turno</div>${N.queue.map(k=>`<div class="pl" style="opacity:.6"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${N.teams[k].nom}</div></div>`).join('')}`:''}
+    <button class="btn ghost" onclick="S.night.fin=true;save();renderNoche()">🏁 Cerrar la noche</button>`}
+function renderCierre(){
+  const N=S.night;
+  const rows=Object.entries(N.st).filter(([,v])=>v.j>0).sort((x,y)=>y[1].mejor-x[1].mejor||y[1].g-x[1].g);
+  const rey=rows[0];
+  $('noche-h').textContent='Fin de la noche';
+  $('noche-box').innerHTML=`
+    <div class="gan"><span>👑 Rey de la cancha</span><b>${rey?esc(rey[0]):'—'}</b><span>${rey?`racha de ${rey[1].mejor} retas seguidas`:''}</span></div>
+    <table class="tabla"><tr><th>Jugador</th><th>Retas</th><th>Ganadas</th><th>Mejor racha</th></tr>
+    ${rows.map(([n,v])=>`<tr class="${S.perfil&&n.startsWith(S.perfil.nombre)?'me':''}"><td>${esc(n)}</td><td>${v.j}</td><td>${v.g}</td><td>${v.mejor}</td></tr>`).join('')}</table>
+    ${S.perfil?`<div class="sec">Lo tuyo de la noche (opcional)</div>
+    <div class="step"><div class="lb">⚽ Goles</div><div class="ct"><button onclick="stpN('g',-1)">−</button><b id="cn-g">0</b><button onclick="stpN('g',1)">+</button></div></div>
+    <div class="step"><div class="lb">🎯 Asistencias</div><div class="ct"><button onclick="stpN('a',-1)">−</button><b id="cn-a">0</b><button onclick="stpN('a',1)">+</button></div></div>
+    <button class="btn" onclick="guardarNoche()">Guardar mi noche</button>`:''}
+    <button class="btn ghost sm" onclick="S.night=null;save();go('parche')">Descartar</button>`}
+let fN={g:0,a:0};
+function stpN(k,d){fN[k]=Math.max(0,Math.min(15,fN[k]+d));$('cn-'+k).textContent=fN[k]}
+function guardarNoche(){
+  const N=S.night,me=Object.entries(N.st).find(([n])=>n.startsWith(S.perfil.nombre));
+  const v=me?me[1]:{j:0,g:0,mejor:0};
+  const wBefore=MISIONES.filter(m=>m.check(semana()));
+  const lvlB=nivel(S.perfil.xp).l;
+  let xp=25+v.j*8+v.g*10+v.mejor*10+fN.g*15+fN.a*10;
+  const res=v.g*2>=v.j?'g':'p';
+  S.partidos.unshift({t:Date.now(),res,g:fN.g,a:fN.a,valla:false,rival:'',xp,noche:{j:v.j,g:v.g,mejor:v.mejor}});
+  const h=S.perfil.hist;h.pj++;h.g+=fN.g;h.a+=fN.a;if(res==='g')h.v=(h.v||0)+1;
+  let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
+  xp+=bonus;S.partidos[0].xp=xp;S.perfil.xp+=xp;
+  S.night=null;fN={g:0,a:0};save();go('inicio');
+  const l=nivel(S.perfil.xp).l;
+  toast(l>lvlB?`+${xp} XP · ¡Nivel ${l}! 🎉`:`+${xp} XP por la noche`)}
+
+/* ===== tema claro/oscuro ===== */
+function applyTheme(){
+  const t=(S.prefs&&S.prefs.theme)||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+  document.body.classList.toggle('light',t==='light');
+  $('b-th').textContent=t==='light'?'🌙':'☀️';
+  $('thc').content=t==='light'?'#F6F4EC':'#0B1A14';
+}
+function themeToggle(){S.prefs=S.prefs||{};
+  const cur=(S.prefs.theme)||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
+  S.prefs.theme=cur==='light'?'dark':'light';
+  save();applyTheme()}
+
+/* ===== música de menú (loop original, Tone.js) ===== */
+let musOn=false,musReady=false;
+function musToggle(){
+  if(musOn){Tone.Transport.stop();musOn=false;$('b-mus').style.opacity=.55;return}
+  if(musReady){Tone.start();Tone.Transport.start();musOn=true;$('b-mus').style.opacity=1;return}
+  const sc=document.createElement('script');
+  sc.src='https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js';
+  sc.onload=()=>{setupMusic();musReady=true;Tone.start();Tone.Transport.start();musOn=true;$('b-mus').style.opacity=1;toast('Música de menú 🎛️')};
+  sc.onerror=()=>toast('No cargó el audio (¿sin internet?)');
+  document.head.appendChild(sc);
+}
+function setupMusic(){
+  Tone.Transport.bpm.value=104;Tone.Destination.volume.value=-6;
+  const rev=new Tone.Reverb({decay:3,wet:.3}).toDestination();
+  const pad=new Tone.PolySynth(Tone.Synth,{oscillator:{type:'fatsawtooth',spread:18,count:3},envelope:{attack:.6,decay:.3,sustain:.5,release:1.6}}).connect(rev);
+  pad.volume.value=-19;
+  const bass=new Tone.MonoSynth({oscillator:{type:'square'},filter:{frequency:520,Q:1},envelope:{attack:.01,decay:.18,sustain:.25,release:.15},filterEnvelope:{attack:.01,decay:.12,sustain:.3,baseFrequency:120,octaves:2.4}}).toDestination();
+  bass.volume.value=-13;
+  const hat=new Tone.NoiseSynth({noise:{type:'white'},envelope:{attack:.001,decay:.045,sustain:0}}).connect(new Tone.Filter(8500,'highpass').toDestination());
+  hat.volume.value=-27;
+  const pluck=new Tone.Synth({oscillator:{type:'triangle'},envelope:{attack:.005,decay:.16,sustain:0,release:.1}}).connect(rev);
+  pluck.volume.value=-15;
+  const CH=[['C3','Eb3','G3','Bb3'],['Ab2','C3','Eb3','G3'],['Eb3','G3','Bb3','D4'],['Bb2','D3','F3','Ab3']];
+  const ROOT=['C1','Ab0','Eb1','Bb0'];
+  const MEL=[['G4',null,'Bb4','C5',null,'Eb5',null,'C5'],['Eb5',null,'C5','Bb4',null,'G4',null,null],['Bb4',null,'D5','Eb5',null,'G5',null,'Eb5'],['F5',null,'D5','Bb4',null,'Ab4',null,'Bb4']];
+  let bar=0;
+  new Tone.Loop(t=>{pad.triggerAttackRelease(CH[bar%4],'1m',t);bar++},'1m').start(0);
+  let step=0;
+  new Tone.Loop(t=>{
+    const b=Math.floor(step/8)%4,s=step%8;
+    if(s%2===0)bass.triggerAttackRelease(ROOT[b],'8n',t);
+    if(s%2===1)hat.triggerAttackRelease('16n',t);
+    const n=MEL[b][s];if(n)pluck.triggerAttackRelease(n,'8n',t);
+    step++;
+  },'8n').start(0);
+}
+
+applyTheme();
+render();
+</script>
+</body>
+</html>
