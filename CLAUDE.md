@@ -47,7 +47,10 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 5. **La noche** — pantalla propia, con su pestaña en el nav mientras haya noche viva. Cotejos en vivo:
    marcador por cotejo, quién ganó, quién espera turno y estadísticas al vuelo (enrachado, va mandando,
    aguanta la cancha, goles). Se puede salir y volver sin perder nada.
-6. **Lista** — lista del jueves: confirmó → pagó, 12 cupos, lista de espera, recordatorio para WhatsApp.
+6. **Lista** — lista del jueves: confirmó → pagó, 12 cupos, recordatorio para WhatsApp.
+   La lista **se cierra sola** al llegar a `CUPOS`: nunca hay que sacar a nadie. El que llega
+   después entra a la fila y se le dice el puesto de una, no el jueves. `CUPOS` debe ser
+   múltiplo de 4 para que los equipos salgan parejos.
 7. **Perfil** — datos y editor de avatar. La posición se elige por frase ("me gusta tapar",
    "palomero"), no por sigla; internamente sigue siendo un código de 3 letras (ver `POS`).
 
@@ -59,8 +62,15 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
   a propósito, para no romper las noches ya guardadas en `localStorage`.
 - **Rey de la cancha**: quien aguantó más cotejos seguidos sin salir. Es el premio de la noche.
 - **Jugador de la noche**: premio aparte, por goles (desempate por racha). No reemplaza al rey.
+- **Roles** (cuando haya cuentas): jugador / planillero de la noche / admin. El planillero es
+  uno por noche y su poder se vence al cerrarla. El admin no puede repartir XP a dedo.
 - **Pagos**: Nequi, fuera de la app. La app solo es el tablero de quién pagó. Nunca integrar pasarela.
-- **Anti-trampa**: todo público dentro del parche + inflar tu overall te empareja contra mejores.
+- **Anti-trampa**: la carta SOLO la mueve lo que registró el planillero en la noche del jueves.
+  El partido suelto de la pantalla "Partido" es diario personal: se guarda con `suelto:true`,
+  no da XP, no toca el overall y no cuenta para misiones (`semanaNoche()` filtra por `p.noche`).
+  Si uno pudiera ponerse sus propios goles, la carta no valdría nada. No revertir sin hablarlo.
+- **Misiones**: son de la noche, no de la semana suelta. Una noche por semana, así que están
+  calibradas a eso (caer el jueves, meter un gol, ganarse 3 cotejos).
 - **Sin rivales**: no se anota contra quién se jugó, y no hay head-to-head. Los equipos se
   rebarajan cada jueves, así que "el rival" no existe como entidad estable. Se quitó a propósito;
   no volver a agregarlo sin hablarlo.

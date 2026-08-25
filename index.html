@@ -102,6 +102,18 @@ nav button.on{color:var(--yellow)}
 .ritmo small{color:var(--chalk-dim);font-size:12px;line-height:1.3}
 .ritmo.alta{border-color:#8FE3A8}.ritmo.alta b,.ritmo.alta .ic{color:#8FE3A8}
 .ritmo.media b,.ritmo.media .ic{color:var(--chalk-dim)}
+.cerrada{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--yellow);border-radius:14px;padding:11px 13px;margin:10px 0 4px}
+.cerrada .ic{width:19px;height:19px;color:var(--yellow);flex-shrink:0}
+.cerrada b{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--yellow)}
+.cerrada small{display:block;color:var(--chalk-dim);font-size:12px;line-height:1.3}
+.abierta{margin:10px 0 4px}
+.abierta .barra{height:7px;border-radius:99px;background:var(--card);border:1px solid var(--line);overflow:hidden}
+.abierta .barra i{display:block;height:100%;background:var(--volt);transition:width .25s}
+.abierta small{display:block;color:var(--chalk-dim);font-size:12px;margin-top:6px}
+.abierta small b{color:var(--chalk)}
+body.light .abierta .barra i{background:#1C5E36}
+body.light .cerrada{border-color:#1C5E36}
+body.light .cerrada .ic,body.light .cerrada b{color:#1C5E36}
 .ritmo.baja{border-color:#FF8A7A}.ritmo.baja b,.ritmo.baja .ic{color:#FF8A7A}
 body.light .ritmo.alta{border-color:#1B7A46}body.light .ritmo.alta b,body.light .ritmo.alta .ic{color:#1B7A46}
 body.light .ritmo.baja{border-color:#C0392B}body.light .ritmo.baja b,body.light .ritmo.baja .ic{color:#C0392B}
@@ -328,7 +340,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 
 <section class="screen" id="s-partido">
   <h1>Meter el partido</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Lo que pasó en la cancha le sube la carta. Sin sudar no hay nivel, parce.</p>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Su diario personal: los picaditos de por fuera del parche. <b style="color:var(--chalk)">No da XP ni sube la carta</b> — eso solo lo mueve el planillero el jueves.</p>
   <label>¿Cómo quedó la vuelta?</label>
   <div class="res3">
     <button id="r-g" onclick="setRes('g')">Ganamos</button>
@@ -369,6 +381,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <h1>La lista</h1>
   <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Este jueves · 12 cupos · quince lucas al Nequi.<br>Confirme a los que avisaron y marque el pago cuando caiga la plata.</p>
   <div class="kv" id="lista-kv" style="grid-template-columns:repeat(3,1fr)"></div>
+  <div id="lista-estado"></div>
   <div id="lista-box"></div>
   <button class="btn ghost" onclick="cerrarLista()"><svg class="ic"><use href="#i-lock"/></svg>Cerrar lista</button>
   <button class="btn sm" onclick="copiarRec()"><svg class="ic"><use href="#i-chat"/></svg>Copiar la razón pal grupo</button>
@@ -432,7 +445,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="toast" id="toast"></div>
 
 <script>
-const BUILD='2026-08-25T02:02:33Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
+const BUILD='2026-08-25T02:10:42Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
 function buildTxt(){
   if(BUILD==='dev')return 'versión local, sin publicar';
   const d=new Date(BUILD);
@@ -473,10 +486,11 @@ const PARCHE=[
  {n:'Camilo',pos:'DEF',pj:5,g:1,a:0,racha:0,xp:430},
  {n:'Pipe',pos:'EXT',pj:4,g:4,a:3,racha:0,xp:505},
 ];
+const cotGanados=w=>w.reduce((a,p)=>a+(p.noche?p.noche.g:0),0);
 const MISIONES=[
- {id:'m1',ic:'ball',tx:'Caiga a 2 partidos esta semana',xp:60,check:w=>w.length>=2,prog:w=>Math.min(w.length,2)+'/2'},
- {id:'m2',ic:'target',tx:'Meta un gol o ponga una asistencia',xp:40,check:w=>w.some(p=>p.g>0||p.a>0),prog:w=>w.some(p=>p.g>0||p.a>0)?'1/1':'0/1'},
- {id:'m3',ic:'crown',tx:'Gánese uno',xp:40,check:w=>w.some(p=>p.res==='g'),prog:w=>w.some(p=>p.res==='g')?'1/1':'0/1'},
+ {id:'m1',ic:'ball',tx:'Caiga el jueves',xp:60,check:w=>w.length>=1,prog:w=>(w.length?1:0)+'/1'},
+ {id:'m2',ic:'target',tx:'Meta un gol en la noche',xp:40,check:w=>w.some(p=>p.g>0),prog:w=>(w.some(p=>p.g>0)?1:0)+'/1'},
+ {id:'m3',ic:'crown',tx:'Gánese 3 cotejos',xp:40,check:w=>cotGanados(w)>=3,prog:w=>Math.min(cotGanados(w),3)+'/3'},
 ];
 
 /* ===== progresión ===== */
@@ -505,6 +519,8 @@ function go(s){document.querySelectorAll('.screen').forEach(e=>e.classList.remov
   document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.s===s||(s==='torneo'&&b.dataset.s==='torneos')));
   window.scrollTo(0,0);render();if(s==='armar')renderAsis();if(s==='noche')renderNoche();if(s==='lista')renderLista()}
 function semana(){const now=Date.now();return S.partidos.filter(p=>now-p.t<7*864e5)}
+/* solo lo que registró el planillero cuenta para XP y misiones */
+function semanaNoche(){return semana().filter(p=>p.noche)}
 function rachaCalc(){let r=0;for(const p of S.partidos){if(p.res==='g')r++;else break}return r}
 
 /* ===== ritmo: la flechita, estilo FIFA =====
@@ -587,7 +603,7 @@ function render(){
   if(viva)nb.querySelector('.viva').style.display=S.night.fin?'none':'block';
   const r=rachaCalc();
   $('racha').innerHTML=r>1?`Racha <b>${r} 🔥</b>`:'';
-  const w=semana();
+  const w=semanaNoche();
   $('misiones').innerHTML=MISIONES.map(m=>{const done=m.check(w);return `<div class="mision ${done?'done':''}"><svg class="ic"><use href="#i-${m.ic}"/></svg><div class="tx">${m.tx}<small>${done?'Hecha esta semana':m.prog(w)}</small></div><div class="xp">${done?'<svg class="ic"><use href="#i-check"/></svg>':'+'+m.xp}</div></div>`}).join('');
   const h=p?p.hist:{pj:0,g:0,a:0,vallas:0,v:0};
   $('temporada').innerHTML=`<div><b>${h.pj}</b><small>Partidos</small></div><div><b>${h.v||0}</b><small>Victorias</small></div><div><b>${h.g}</b><small>Goles</small></div><div><b>${h.a}</b><small>Asistencias</small></div>`;
@@ -628,21 +644,15 @@ function tglValla(){form.valla=!form.valla;$('valla-btn').textContent=form.valla
 function regPartido(){
   if(!S.perfil){toast('Primero hágase la carta');go('perfil');return}
   if(!form.res){toast('¿Ganaron, empataron o les dieron?');return}
-  const wBefore=MISIONES.filter(m=>m.check(semana()));
-  const lvlBefore=nivel(S.perfil.xp).l;
-  let xp=50+{g:30,e:10,p:0}[form.res]+form.g*20+form.a*15+(form.valla?25:0);
-  const par={t:Date.now(),res:form.res,g:form.g,a:form.a,valla:form.valla,xp:0};
-  S.partidos.unshift(par);
-  const h=S.perfil.hist;h.pj++;h.g+=form.g;h.a+=form.a;if(form.valla)h.vallas++;if(form.res==='g')h.v=(h.v||0)+1;
-  // misiones nuevas cumplidas dan bonus
-  let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
-  xp+=bonus;par.xp=xp;S.perfil.xp+=xp;save();
-  const lvlAfter=nivel(S.perfil.xp).l;
+  /* Esto es el diario personal: NO da XP y NO toca el overall.
+     La carta solo la mueve lo que registró el planillero en la noche del jueves.
+     Es a propósito: si uno se pone sus propios goles, la carta no vale nada. */
+  S.partidos.unshift({t:Date.now(),res:form.res,g:form.g,a:form.a,valla:form.valla,xp:0,suelto:true});
+  save();
   form={res:null,g:0,a:0,valla:false};$('c-g').textContent=0;$('c-a').textContent=0;
   ['g','e','p'].forEach(x=>$('r-'+x).classList.remove('sel'));$('valla-btn').textContent='No';$('valla-btn').style.color='';
   go('inicio');
-  const ovrEl=$('ovr-n');if(ovrEl)ovrEl.classList.add('up');
-  toast(lvlAfter>lvlBefore?`+${xp} XP · ¡Subiste a nivel ${lvlAfter}! 🎉`:`+${xp} XP${bonus?` (misión +${bonus})`:''}`)
+  toast('Quedó en su diario. La carta se mueve el jueves')
 }
 
 /* ===== perfil ===== */
@@ -756,7 +766,15 @@ function listaInit(){if(!S.lista)S.lista={est:{},orden:[]};return S.lista}
 function nombresGrupo(){const arr=[...GRUPO];if(S.perfil&&!arr.includes(S.perfil.nombre))arr.unshift(S.perfil.nombre);return arr}
 function setLista(n,v){const L=listaInit();
   if(v===0){L.est[n]=0;L.orden=L.orden.filter(x=>x!==n);toast(n+' sale de la lista')}
-  else{if(!L.orden.includes(n))L.orden.push(n);L.est[n]=v;if(v===2)toast(n+' pag\u00f3 \u00b7 $'+PRECIO.toLocaleString('es-CO'))}
+  else{
+    const nuevo=!L.orden.includes(n);
+    if(nuevo)L.orden.push(n);
+    L.est[n]=v;
+    // ser claro de una: si ya no alcanzó, que lo sepa ahora y no el jueves
+    if(nuevo){const puesto=L.orden.filter(x=>(L.est[x]||0)>=1).indexOf(n);
+      toast(puesto>=CUPOS?`${n} quedó en la fila, puesto ${puesto-CUPOS+1}`:`${n} adentro · cupo ${puesto+1} de ${CUPOS}`);}
+    else if(v===2)toast(n+' pag\u00f3 \u00b7 $'+PRECIO.toLocaleString('es-CO'));
+  }
   save();renderLista()}
 function confirmados(){const L=listaInit();return L.orden.filter(n=>(L.est[n]||0)>=1)}
 function cerrarLista(){const L=listaInit();let out=0;
@@ -774,18 +792,25 @@ function copiarRec(){const L=listaInit();const conf=confirmados();
   else prompt('Copia el mensaje:',msg)}
 function renderLista(){const L=listaInit();const conf=confirmados();
   const pag=conf.filter(n=>L.est[n]===2);
-  $('lista-kv').innerHTML=`<div><b>${Math.min(conf.length,CUPOS)}/${CUPOS}</b><small>Cupos</small></div><div><b>${pag.length}</b><small>Pagaron</small></div><div><b>$${(pag.length*PRECIO/1000)}k</b><small>En el Nequi</small></div>`;
+  const dentro=Math.min(conf.length,CUPOS),faltan=CUPOS-dentro,fila=Math.max(0,conf.length-CUPOS),llena=faltan<=0;
+  $('lista-kv').innerHTML=`<div><b>${dentro}/${CUPOS}</b><small>Cupos</small></div><div><b>${pag.length}</b><small>Pagaron</small></div><div><b>$${(pag.length*PRECIO/1000)}k</b><small>En el Nequi</small></div>`;
+  $('lista-estado').innerHTML=llena
+    ? `<div class="cerrada"><svg class="ic"><use href="#i-lock"/></svg><div><b>La lista se cerró</b>
+        <small>Los ${CUPOS} cupos están llenos${fila?`. ${fila} ${fila===1?'espera':'esperan'} en la fila por si alguien se cae`:''}.</small></div></div>`
+    : `<div class="abierta"><div class="barra"><i style="width:${dentro/CUPOS*100}%"></i></div>
+        <small>Van <b>${dentro}</b> de ${CUPOS}. Faltan <b>${faltan}</b> para llenar el jueves.</small></div>`;
   $('lista-box').innerHTML=nombresGrupo().map(n=>{const e=L.est[n]||0;
     const idx=conf.indexOf(n),espera=e>=1&&idx>=CUPOS;
     const est=e===2?`<span class="est ok"><svg class="ic"><use href="#i-check"/></svg>Pagó</span>`
       :e===1?`<span class="est deb">Debe $${PRECIO.toLocaleString('es-CO')}</span>`
       :`<span class="est no">Ni ha dicho nada</span>`;
-    const acc=e===0?`<button class="ab conf" onclick="setLista('${esc(n)}',1)">Confirmar</button>`
+    const lleno=conf.length>=CUPOS;
+    const acc=e===0?`<button class="ab conf" onclick="setLista('${esc(n)}',1)">${lleno?'Hacer fila':'Confirmar'}</button>`
       :e===1?`<button class="ab pay" onclick="setLista('${esc(n)}',2)"><svg class="ic"><use href="#i-money"/></svg>Ya pagó</button><button class="ab x" onclick="setLista('${esc(n)}',0)" title="Sacar de la lista">&#10005;</button>`
       :`<button class="ab x" onclick="setLista('${esc(n)}',1)">Deshacer</button>`;
     return `<div class="plr ${e===0?'off':''} ${e===2?'paid':''}">
       <div class="av">${e>=1?idx+1:'\u00b7'}</div>
-      <div class="nn">${esc(n)}${S.perfil&&n===S.perfil.nombre?' (t\u00fa)':''}${espera?' <em>\u00b7 espera</em>':''}<br>${est}</div>
+      <div class="nn">${esc(n)}${S.perfil&&n===S.perfil.nombre?' (yo)':''}${espera?` <em>\u00b7 puesto ${idx-CUPOS+1} en la fila</em>`:''}<br>${est}</div>
       <div class="acc">${acc}</div></div>`}).join('');
 }
 
@@ -1017,13 +1042,13 @@ function guardarNoche(){
     const me=Object.entries(N.st).find(([n])=>n.startsWith(S.perfil.nombre));
     const v=me?me[1]:{j:0,g:0,mejor:0};
     const mg=me?(N.goles[me[0]]||0):0;
-    const wBefore=MISIONES.filter(m=>m.check(semana()));
+    const wBefore=MISIONES.filter(m=>m.check(semanaNoche()));
     const lvlB=nivel(S.perfil.xp).l;
     let xp=25+v.j*8+v.g*10+v.mejor*10+mg*15;
     const res=v.g*2>=v.j?'g':'p';
     S.partidos.unshift({t:Date.now(),res,g:mg,a:0,valla:false,xp,noche:{j:v.j,g:v.g,mejor:v.mejor}});
     const h=S.perfil.hist;h.pj++;h.g+=mg;if(res==='g')h.v=(h.v||0)+1;
-    let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
+    let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semanaNoche()))bonus+=m.xp});
     xp+=bonus;S.partidos[0].xp=xp;S.perfil.xp+=xp;
     S.night=null;save();go('inicio');
     const l=nivel(S.perfil.xp).l;
