@@ -288,62 +288,62 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <div id="carta-box"></div>
   <div class="xpbar" id="xpbar"></div>
   <div class="hint" id="carta-hint"></div>
-  <div class="sec">Misiones de la semana <span class="racha" id="racha"></span></div>
+  <div class="sec">Las vueltas de la semana <span class="racha" id="racha"></span></div>
   <div id="misiones"></div>
-  <div class="sec">Mi temporada</div>
+  <div class="sec">Cómo voy</div>
   <div class="kv" id="temporada"></div>
 </section>
 
 <section class="screen" id="s-partido">
-  <h1>Registrar partido</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Lo que pasó en la cancha alimenta tu carta. Sin partido no hay progreso.</p>
-  <label>¿Cómo quedó?</label>
+  <h1>Meter el partido</h1>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Lo que pasó en la cancha le sube la carta. Sin sudar no hay nivel, parce.</p>
+  <label>¿Cómo quedó la vuelta?</label>
   <div class="res3">
     <button id="r-g" onclick="setRes('g')">Ganamos</button>
     <button id="r-e" onclick="setRes('e')">Empate</button>
-    <button id="r-p" onclick="setRes('p')">Perdimos</button>
+    <button id="r-p" onclick="setRes('p')">Nos dieron</button>
   </div>
-  <div class="sec">Lo tuyo</div>
+  <div class="sec">Lo suyo</div>
   <div class="step"><div class="lb"><svg class="ic"><use href="#i-ball"/></svg>Goles</div><div class="ct"><button onclick="stp('g',-1)">−</button><b id="c-g">0</b><button onclick="stp('g',1)">+</button></div></div>
   <div class="step"><div class="lb"><svg class="ic"><use href="#i-target"/></svg>Asistencias</div><div class="ct"><button onclick="stp('a',-1)">−</button><b id="c-a">0</b><button onclick="stp('a',1)">+</button></div></div>
-  <div class="step" id="valla-row"><div class="lb"><svg class="ic"><use href="#i-glove"/></svg>Arco en cero</div><div class="ct"><button onclick="tglValla()" id="valla-btn" style="width:auto;padding:0 16px;border-radius:999px;font-size:13px;font-family:var(--body)">No</button></div></div>
-  <label>¿Contra quién? (opcional)</label>
+  <div class="step" id="valla-row"><div class="lb"><svg class="ic"><use href="#i-glove"/></svg>No me metieron ni una</div><div class="ct"><button onclick="tglValla()" id="valla-btn" style="width:auto;padding:0 16px;border-radius:999px;font-size:13px;font-family:var(--body)">No</button></div></div>
+  <label>¿Contra quién fue? (si se acuerda)</label>
   <input id="p-rival" placeholder="Los Pelaos, Barrio Unido…" maxlength="24" list="rivales-dl"><datalist id="rivales-dl"></datalist>
-  <button class="btn" onclick="regPartido()">Guardar partido</button>
-  <div class="sec">Últimos partidos</div>
+  <button class="btn" onclick="regPartido()">Guardar la vuelta</button>
+  <div class="sec">Las últimas</div>
   <div id="hist"></div>
 </section>
 
 <section class="screen" id="s-parche">
   <h1>El parche</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">La tabla del grupo. Aquí es donde duele.</p>
-  <button class="btn" onclick="go('armar')"><svg class="ic"><use href="#i-bolt"/></svg>Armar equipos de hoy</button>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">La tabla del parche. Aquí es donde arde.</p>
+  <button class="btn" onclick="go('armar')"><svg class="ic"><use href="#i-bolt"/></svg>Armar los equipos de hoy</button>
   <div class="sec">Este mes</div>
   <table class="tabla" id="lb"></table>
-  <p style="font-size:12px;color:var(--chalk-dim);margin-top:14px">Los demás son jugadores simulados para probar la sensación. En la app real serían tus amigos, cada uno registrando sus partidos.</p>
-  <div class="sec">Rivalidades</div>
+  <p style="font-size:12px;color:var(--chalk-dim);margin-top:14px">Los otros son inventados, pa' probar cómo se siente. En la app de verdad serían sus llaves, cada uno metiendo lo suyo.</p>
+  <div class="sec">Cuentas pendientes</div>
   <div id="rivales"></div>
 </section>
 
 <section class="screen" id="s-armar">
   <button class="back" onclick="go('parche')">← Parche</button>
   <h1>Equipos del jueves</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Marca quién vino. La app arma equipos de 4 parejos con el overall de cada carta; los que sobran esperan el primer cotejo.</p>
-  <div class="sec">¿Quién está en la cancha?</div>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Marque quién cayó. La app arma equipos de 4 parejitos con el overall de cada carta; los que sobran hacen fila pal primer cotejo.</p>
+  <div class="sec">¿Quién cayó hoy?</div>
   <div id="asis"></div>
-  <div style="display:flex;gap:8px;margin-top:10px"><input id="inv-n" placeholder="Invitado (parcero de alguien)" maxlength="14" style="flex:2"><select id="inv-lvl" style="flex:1"><option value="50">Normal</option><option value="58">Bueno</option><option value="66">Crack</option></select></div>
-  <button class="btn ghost sm" onclick="addInv()"><svg class="ic"><use href="#i-plus"/></svg>Agregar invitado</button>
-  <button class="btn" onclick="armar()"><svg class="ic"><use href="#i-bolt"/></svg>Armar equipos de 4</button>
+  <div style="display:flex;gap:8px;margin-top:10px"><input id="inv-n" placeholder="El colado (llave de alguien)" maxlength="14" style="flex:2"><select id="inv-lvl" style="flex:1"><option value="50">Del montón</option><option value="58">Se defiende</option><option value="66">Crack</option></select></div>
+  <button class="btn ghost sm" onclick="addInv()"><svg class="ic"><use href="#i-plus"/></svg>Meter un colado</button>
+  <button class="btn" onclick="armar()"><svg class="ic"><use href="#i-bolt"/></svg>Armar los equipos</button>
   <div id="equipos-out"></div>
 </section>
 
 <section class="screen" id="s-lista">
   <h1>La lista</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Este jueves · 12 cupos · $15.000 al Nequi.<br>Confirma a los que avisaron y marca el pago cuando llegue la plata.</p>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Este jueves · 12 cupos · quince lucas al Nequi.<br>Confirme a los que avisaron y marque el pago cuando caiga la plata.</p>
   <div class="kv" id="lista-kv" style="grid-template-columns:repeat(3,1fr)"></div>
   <div id="lista-box"></div>
   <button class="btn ghost" onclick="cerrarLista()"><svg class="ic"><use href="#i-lock"/></svg>Cerrar lista</button>
-  <button class="btn sm" onclick="copiarRec()"><svg class="ic"><use href="#i-chat"/></svg>Copiar recordatorio</button>
+  <button class="btn sm" onclick="copiarRec()"><svg class="ic"><use href="#i-chat"/></svg>Copiar la razón pal grupo</button>
 </section>
 
 <section class="screen" id="s-noche">
@@ -353,7 +353,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 
 <section class="screen" id="s-torneos">
   <h1>Torneos</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Dónde se juega esta semana cerca tuyo.</p>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 12px;line-height:1.4">Dónde hay picadito esta semana cerquita.</p>
   <div id="torneos-list"></div>
 </section>
 <section class="screen" id="s-torneo">
@@ -363,21 +363,21 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 
 <section class="screen" id="s-perfil">
   <h1>Mi perfil</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin-top:3px">Todos arrancan igual. La carta la subes jugando.</p>
-  <div class="sec">Tu avatar</div>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin-top:3px">Todos arrancan del mismo hueco. La carta se sube sudando.</p>
+  <div class="sec">Su cara</div>
   <div class="avwrap"><div class="avbig" id="av-prev"></div>
     <div class="avctrl" id="av-ctrl"></div></div>
-  <button class="btn ghost sm" onclick="avRandom()"><svg class="ic"><use href="#i-shuffle"/></svg>Sorpréndeme</button>
-  <label>Nombre o apodo</label><input id="f-nombre" placeholder="Cómo te dicen en la cancha" maxlength="18">
+  <button class="btn ghost sm" onclick="avRandom()"><svg class="ic"><use href="#i-shuffle"/></svg>Sorpréndame</button>
+  <label>Nombre o como le dicen</label><input id="f-nombre" placeholder="Cómo le dicen en la cancha" maxlength="18">
   <label>Posición</label>
   <select id="f-pos" onchange="posHint()">
-    <option value="ARQ">Me gusta tapar. Alguien tiene que dar la cara</option>
+    <option value="ARQ">Me gusta tapar. Alguien tiene que poner el pecho</option>
     <option value="DEF">No pasa nadie conmigo. Ni el balón</option>
-    <option value="LAT">Subo y bajo toda la noche. Nadie lo nota</option>
-    <option value="VOL">Medio defensa: yo quito, otros aplauden</option>
+    <option value="LAT">Subo y bajo toda la noche y nadie lo nota</option>
+    <option value="VOL">Medio defensa: yo camello, otros lucen</option>
     <option value="MED" selected>Me gusta poner los pases</option>
     <option value="CRE">Medio creativo: un pase genial cada cuarenta malos</option>
-    <option value="EXT">Puro pique por la banda. Pulmón para diez minutos</option>
+    <option value="EXT">Puro pique por la banda. Pulmón pa' diez minutos</option>
     <option value="DEL">Goleador. Al menos en mi cabeza</option>
     <option value="PAL">Palomero: llego, empujo y celebro como si fuera mío</option>
   </select>
@@ -387,7 +387,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <select id="f-pie"><option>Derecho</option><option>Izquierdo</option><option>Ambos</option></select>
   <label>Barrio / localidad</label><input id="f-barrio" placeholder="Chapinero, Suba, Kennedy…">
   <button class="btn" onclick="savePerfil()">Guardar</button>
-  <button class="btn ghost sm" style="margin-top:20px;color:var(--red)" onclick="if(confirm('¿Borrar todo y empezar de cero?')){try{localStorage.removeItem('cancha_v2')}catch(e){};location.reload()}">Reiniciar prototipo</button>
+  <button class="btn ghost sm" style="margin-top:20px;color:var(--red)" onclick="if(confirm('¿Borrar todo? Queda como al principio.')){try{localStorage.removeItem('cancha_v2')}catch(e){};location.reload()}">Borrar todo y arrancar de cero</button>
 </section>
 
 </main>
@@ -407,16 +407,16 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 const STATS=[['RIT','Ritmo'],['TIR','Tiro'],['PAS','Pase'],['REG','Regate'],['DEF','Defensa'],['FIS','Físico']];
 /* como se lee cada posicion: [nombre corto, la frase, el recordatorio] */
 const POS={
-  ARQ:['Arquero','Me gusta tapar','El único que puede usar las manos y el único al que le gritan por todo.'],
-  DEF:['Defensa','No pasa nadie conmigo','Nadie te va a aplaudir un quite. Nunca. Sigue quitando.'],
-  LAT:['Lateral','Subo y bajo toda la noche','Corres la banda entera para que la jugada termine por el otro lado.'],
-  VOL:['Volante de marca','Medio defensa','Tú haces el trabajo sucio, otro sale en la foto.'],
-  MED:['Volante','Me gusta poner los pases','El gol lo celebran ellos. El pase lo recuerdas tú, solo, en la casa.'],
-  CRE:['Enganche','Medio creativo','Un pase genial cada cuarenta malos. Ese uno lo cuentas toda la semana.'],
-  EXT:['Extremo','Puro pique por la banda','Pulmón para diez minutos y excusas para los otros cincuenta.'],
-  DEL:['Delantero','Goleador','Si no la metes, no existes. Sin presión.'],
-  PAL:['Palomero','Palomero','Llegas último, empujas la que ya iba entrando y celebras como si fuera tuya.'],
-  JUG:['Invitado','Parcero de alguien','Nadie sabe cómo juegas. Ni tú.']
+  ARQ:['Arquero','Me gusta tapar','El único que puede usar las manos y al que le gritan por todo.'],
+  DEF:['Defensa','No pasa nadie conmigo','Nadie le va a aplaudir un quite. Nunca. Siga quitando.'],
+  LAT:['Lateral','Subo y bajo toda la noche','Se corre la banda entera pa\' que la jugada termine por el otro lado.'],
+  VOL:['Volante de marca','Medio defensa','Usted hace el camello sucio, otro sale en la foto.'],
+  MED:['Volante','Me gusta poner los pases','El gol lo celebran ellos. El pase se lo acuerda usted, solo, en la casa.'],
+  CRE:['Enganche','Medio creativo','Un pase de otro planeta cada cuarenta malos. Ese uno lo cuenta toda la semana.'],
+  EXT:['Extremo','Puro pique por la banda','Pulmón pa\' diez minutos y excusas pa\' los otros cincuenta.'],
+  DEL:['Delantero','Goleador','Si no la mete, no existe. Sin presión.'],
+  PAL:['Palomero','Palomero','Llega de último, empuja la que ya iba entrando y celebra como si fuera suya.'],
+  JUG:['Colado','Llave de alguien','Nadie sabe cómo juega. Ni usted.']
 };
 function posNom(k){return (POS[k]||POS.JUG)[0]}
 function posFrase(k){return (POS[k]||POS.JUG)[1]}
@@ -437,9 +437,9 @@ const PARCHE=[
  {n:'Pipe',pos:'EXT',pj:4,g:4,a:3,racha:0,xp:505},
 ];
 const MISIONES=[
- {id:'m1',ic:'ball',tx:'Juega 2 partidos esta semana',xp:60,check:w=>w.length>=2,prog:w=>Math.min(w.length,2)+'/2'},
- {id:'m2',ic:'target',tx:'Marca o asiste en un partido',xp:40,check:w=>w.some(p=>p.g>0||p.a>0),prog:w=>w.some(p=>p.g>0||p.a>0)?'1/1':'0/1'},
- {id:'m3',ic:'crown',tx:'Gana un partido',xp:40,check:w=>w.some(p=>p.res==='g'),prog:w=>w.some(p=>p.res==='g')?'1/1':'0/1'},
+ {id:'m1',ic:'ball',tx:'Caiga a 2 partidos esta semana',xp:60,check:w=>w.length>=2,prog:w=>Math.min(w.length,2)+'/2'},
+ {id:'m2',ic:'target',tx:'Meta un gol o ponga una asistencia',xp:40,check:w=>w.some(p=>p.g>0||p.a>0),prog:w=>w.some(p=>p.g>0||p.a>0)?'1/1':'0/1'},
+ {id:'m3',ic:'crown',tx:'Gánese uno',xp:40,check:w=>w.some(p=>p.res==='g'),prog:w=>w.some(p=>p.res==='g')?'1/1':'0/1'},
 ];
 
 /* ===== progresión ===== */
@@ -472,7 +472,7 @@ function rachaCalc(){let r=0;for(const p of S.partidos){if(p.res==='g')r++;else 
 
 /* ===== carta ===== */
 function cartaHTML(p){
-  if(!p)return `<div class="carta draft"><div class="ovr"><b>--</b><i>POS</i><em>PIE</em></div><div class="num">#--</div><div class="foto">${avatarSVG(null,152)}</div><div class="nom">TU NOMBRE</div><div class="meta">Crea tu perfil</div><div class="stats">${STATS.map(([k])=>`<div>${k}<b>--</b></div>`).join('')}</div></div>`;
+  if(!p)return `<div class="carta draft"><div class="ovr"><b>--</b><i>POS</i><em>PIE</em></div><div class="num">#--</div><div class="foto">${avatarSVG(null,152)}</div><div class="nom">TU NOMBRE</div><div class="meta">Hágase la carta</div><div class="stats">${STATS.map(([k])=>`<div>${k}<b>--</b></div>`).join('')}</div></div>`;
   const nv=nivel(p.xp);
   return `<div class="carta">
     <div class="ovr"><b id="ovr-n">${overall(p)}</b><i>${p.pos}</i><em>${p.pie.slice(0,3).toUpperCase()}</em></div>
@@ -490,9 +490,9 @@ function render(){
   $('carta-box').innerHTML=cartaHTML(p);
   if(p){const nv=nivel(p.xp);
     $('xpbar').innerHTML=`<div class="bar"><i style="width:${nv.into/nv.need*100}%"></i></div><small><span>Nivel ${nv.l}</span><span>${nv.into} / ${nv.need} XP</span></small>`;
-    $('carta-hint').innerHTML=`El overall solo sube jugando. <a href="#" onclick="go('partido');return false" style="color:var(--yellow)">Registrar partido →</a>`;
-  }else{$('xpbar').innerHTML='';$('carta-hint').innerHTML=`Arma tu perfil en <a href="#" onclick="go('perfil');return false" style="color:var(--yellow)">Perfil</a>. El resto se gana en la cancha.`}
-  if(S.night&&!S.night.fin)$('carta-hint').innerHTML=`Hay una noche en curso — <a href="#" onclick="go('noche');return false" style="color:var(--yellow)">volver al cotejo número ${S.night.reta}</a>`;
+    $('carta-hint').innerHTML=`El overall no sube hablando paja. <a href="#" onclick="go('partido');return false" style="color:var(--yellow)">Meta el partido →</a>`;
+  }else{$('xpbar').innerHTML='';$('carta-hint').innerHTML=`Arme su carta en <a href="#" onclick="go('perfil');return false" style="color:var(--yellow)">Perfil</a>. Lo demás se suda en la cancha.`}
+  if(S.night&&!S.night.fin)$('carta-hint').innerHTML=`Hay noche andando — <a href="#" onclick="go('noche');return false" style="color:var(--yellow)">vuelva al cotejo número ${S.night.reta}</a>`;
   // la noche tiene su propia pestaña mientras exista; asi no se pierde al navegar
   const nb=$('nav-noche'),viva=!!S.night;
   nb.style.display=viva?'flex':'none';
@@ -501,7 +501,7 @@ function render(){
   const r=rachaCalc();
   $('racha').innerHTML=r>1?`Racha <b>${r} 🔥</b>`:'';
   const w=semana();
-  $('misiones').innerHTML=MISIONES.map(m=>{const done=m.check(w);return `<div class="mision ${done?'done':''}"><svg class="ic"><use href="#i-${m.ic}"/></svg><div class="tx">${m.tx}<small>${done?'Cumplida esta semana':m.prog(w)}</small></div><div class="xp">${done?'<svg class="ic"><use href="#i-check"/></svg>':'+'+m.xp}</div></div>`}).join('');
+  $('misiones').innerHTML=MISIONES.map(m=>{const done=m.check(w);return `<div class="mision ${done?'done':''}"><svg class="ic"><use href="#i-${m.ic}"/></svg><div class="tx">${m.tx}<small>${done?'Hecha esta semana':m.prog(w)}</small></div><div class="xp">${done?'<svg class="ic"><use href="#i-check"/></svg>':'+'+m.xp}</div></div>`}).join('');
   const h=p?p.hist:{pj:0,g:0,a:0,vallas:0,v:0};
   $('temporada').innerHTML=`<div><b>${h.pj}</b><small>Partidos</small></div><div><b>${h.v||0}</b><small>Victorias</small></div><div><b>${h.g}</b><small>Goles</small></div><div><b>${h.a}</b><small>Asistencias</small></div>`;
   // partido screen
@@ -509,10 +509,10 @@ function render(){
   $('hist').innerHTML=S.partidos.length?S.partidos.slice(0,6).map(x=>{
     const lbl={g:'Victoria',e:'Empate',p:'Derrota'}[x.res];
     return `<div class="row"><div class="t">${lbl}${x.rival?' vs '+esc(x.rival):''}<span>+${x.xp} XP</span></div><div class="s">${x.g} gol${x.g!==1?'es':''} · ${x.a} asist. · ${new Date(x.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div></div>`}).join('')
-    :'<div class="empty">Todavía nada. El primer partido es el que arranca la carrera.</div>';
+    :'<div class="empty">Todavía nada, parce. El primero es el que arranca la vuelta.</div>';
   // parche
   const rows=[...PARCHE.map(f=>({...f,me:false})),p?{n:p.nombre,pos:p.pos,pj:h.pj,g:h.g,a:h.a,racha:r,xp:p.xp,me:true}:null].filter(Boolean).sort((a,b)=>b.xp-a.xp);
-  $('lb').innerHTML=`<tr><th>Jugador</th><th>PJ</th><th>G</th><th>A</th><th>🔥</th><th>XP</th></tr>`+rows.map((f,i)=>`<tr class="${f.me?'me':''}"><td>${i+1}. ${esc(f.n)}${f.me?' (tú)':''}</td><td>${f.pj}</td><td>${f.g}</td><td>${f.a}</td><td>${f.racha||''}</td><td>${f.xp}</td></tr>`).join('');
+  $('lb').innerHTML=`<tr><th>Jugador</th><th>PJ</th><th>G</th><th>A</th><th>🔥</th><th>XP</th></tr>`+rows.map((f,i)=>`<tr class="${f.me?'me':''}"><td>${i+1}. ${esc(f.n)}${f.me?' (yo)':''}</td><td>${f.pj}</td><td>${f.g}</td><td>${f.a}</td><td>${f.racha||''}</td><td>${f.xp}</td></tr>`).join('');
   // rivalidades: head-to-head por rival, calculado de los partidos
   const rivMap={};
   S.partidos.forEach(x=>{if(!x.rival)return;const k=x.rival.toLowerCase();
@@ -521,12 +521,12 @@ function render(){
   const rivs=Object.values(rivMap).sort((a,b)=>(b.g+b.e+b.p)-(a.g+a.e+a.p));
   $('rivales').innerHTML=rivs.length?rivs.map(v=>{
     const tot=v.g+v.e+v.p,dom=v.g>v.p?'g':v.p>v.g?'p':'e';
-    const tag={g:'<span class="tag g">Los dominas</span>',p:'<span class="tag r">Te dominan</span>',e:'<span class="tag y">Parejo</span>'}[dom];
+    const tag={g:'<span class="tag g">Los tiene marcados</span>',p:'<span class="tag r">Lo tienen marcado</span>',e:'<span class="tag y">Van parejos</span>'}[dom];
     const ult={g:'victoria',e:'empate',p:'derrota'}[v.ult.res];
     return `<div class="row"><div class="t">vs ${esc(v.n)}<span>${v.g}–${v.e}–${v.p}</span></div>
       <div class="s">${tot} partido${tot!==1?'s':''} · último: ${ult} el ${new Date(v.ult.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div>
       <div class="tags">${tag}</div></div>`}).join('')
-    :'<div class="empty">Pon "¿contra quién?" al registrar tus partidos y aquí nace el historial: victorias–empates–derrotas contra cada rival.</div>';
+    :'<div class="empty">Ponga el "¿contra quién fue?" cuando meta sus partidos y aquí sale la cuenta: ganadas–empatadas–perdidas contra cada uno.</div>';
   $('rivales-dl').innerHTML=rivs.map(v=>`<option value="${esc(v.n)}">`).join('');
   // torneos
   $('torneos-list').innerHTML=TORNEOS.map(t=>{const ins=S.inscritos.includes(t.id);const ocup=t.equipos-t.cupos+(ins?1:0);return `<button class="row" onclick="verTorneo('${t.id}')">
@@ -544,8 +544,8 @@ function verTorneo(id){const t=TORNEOS.find(x=>x.id===id);const ins=S.inscritos.
   <div class="sec">Cancha</div><div class="row"><div class="t">${t.cancha}</div><div class="s">${t.dir}</div></div>
   <div class="sec">Formato</div><p style="font-size:14px">${t.formato}. Premio: ${t.premio}.</p>
   <div class="sec">Organiza</div><p style="font-size:14px">${t.org} · ${t.tel}</p>
-  ${ins?`<button class="btn ghost" onclick="S.inscritos=S.inscritos.filter(x=>x!=='${t.id}');save();toast('Retirado');verTorneo('${t.id}')">Retirarme</button>`
-  :`<button class="btn" onclick="S.inscritos.push('${t.id}');save();toast('Inscrito ⚽ Los partidos de torneo darán XP doble');verTorneo('${t.id}')">Inscribirme</button>`}`;
+  ${ins?`<button class="btn ghost" onclick="S.inscritos=S.inscritos.filter(x=>x!=='${t.id}');save();toast('Se salió');verTorneo('${t.id}')">Salirme</button>`
+  :`<button class="btn" onclick="S.inscritos.push('${t.id}');save();toast('Inscrito. Los partidos de torneo dan XP doble');verTorneo('${t.id}')">Inscribirme</button>`}`;
   go('torneo')}
 
 /* ===== registrar partido ===== */
@@ -554,8 +554,8 @@ function setRes(r){form.res=r;['g','e','p'].forEach(x=>$('r-'+x).classList.toggl
 function stp(k,d){form[k]=Math.max(0,Math.min(15,form[k]+d));$('c-'+k).textContent=form[k]}
 function tglValla(){form.valla=!form.valla;$('valla-btn').textContent=form.valla?'Sí 🧤':'No';$('valla-btn').style.color=form.valla?'var(--yellow)':''}
 function regPartido(){
-  if(!S.perfil){toast('Primero crea tu perfil');go('perfil');return}
-  if(!form.res){toast('¿Ganaron, empataron o perdieron?');return}
+  if(!S.perfil){toast('Primero hágase la carta');go('perfil');return}
+  if(!form.res){toast('¿Ganaron, empataron o les dieron?');return}
   const wBefore=MISIONES.filter(m=>m.check(semana()));
   const lvlBefore=nivel(S.perfil.xp).l;
   let xp=50+{g:30,e:10,p:0}[form.res]+form.g*20+form.a*15+(form.valla?25:0);
@@ -597,11 +597,11 @@ function renderPerfilForm(){const p=S.perfil;
   if(p&&!$('f-nombre').value){$('f-nombre').value=p.nombre;$('f-pos').value=p.pos;$('f-num').value=p.num;$('f-pie').value=p.pie;$('f-barrio').value=p.barrio||''}
   posHint();
   if(!avEdit)avInit();else avRender()}
-function savePerfil(){const nombre=$('f-nombre').value.trim();if(!nombre){toast('¿Cómo te dicen en la cancha?');return}
+function savePerfil(){const nombre=$('f-nombre').value.trim();if(!nombre){toast('¿Y usted cómo se llama, parce?');return}
   const prev=S.perfil;
   S.perfil={nombre,pos:$('f-pos').value,num:+$('f-num').value||10,pie:$('f-pie').value,barrio:$('f-barrio').value.trim(),
     foto:null,av:{...avEdit},xp:prev?.xp||0,hist:prev?.hist||{pj:0,g:0,a:0,vallas:0,v:0}};
-  save();toast(prev?'Perfil actualizado':'Listo. Ahora, a jugar');go('inicio')}
+  save();toast(prev?'Carta actualizada':'Listo. Ahora sí, a la cancha');go('inicio')}
 
 
 /* ===== avatar manga generado (SVG, sin foto) ===== */
@@ -694,9 +694,9 @@ function copiarRec(){const L=listaInit();const conf=confirmados();
   let msg=`⚽ JUEVES SANTO ⚽\nCupos: ${dentro.length}/${CUPOS}\n\n`;
   msg+=`✅ Pagaron (${pag.length}): ${pag.join(', ')||'nadie todavía'}\n`;
   if(deben.length)msg+=`⏳ Deben ($${PRECIO.toLocaleString('es-CO')} al Nequi): ${deben.join(', ')}\n`;
-  if(conf.length>CUPOS)msg+=`🪑 Lista de espera: ${conf.slice(CUPOS).join(', ')}\n`;
-  msg+=`\nEl que no pague antes del jueves, cede el cupo. Sin excepciones 😌`;
-  const done=()=>toast('Copiado. Péguelo en el grupo 💬');
+  if(conf.length>CUPOS)msg+=`🪑 En la fila: ${conf.slice(CUPOS).join(', ')}\n`;
+  msg+=`\nEl que no pague antes del jueves, suelta el cupo. Sin llorar.`;
+  const done=()=>toast('Copiado. Péguelo en el grupo');
   if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(msg).then(done).catch(()=>{prompt('Copia el mensaje:',msg)})}
   else prompt('Copia el mensaje:',msg)}
 function renderLista(){const L=listaInit();const conf=confirmados();
@@ -706,9 +706,9 @@ function renderLista(){const L=listaInit();const conf=confirmados();
     const idx=conf.indexOf(n),espera=e>=1&&idx>=CUPOS;
     const est=e===2?`<span class="est ok"><svg class="ic"><use href="#i-check"/></svg>Pagó</span>`
       :e===1?`<span class="est deb">Debe $${PRECIO.toLocaleString('es-CO')}</span>`
-      :`<span class="est no">No ha confirmado</span>`;
+      :`<span class="est no">Ni ha dicho nada</span>`;
     const acc=e===0?`<button class="ab conf" onclick="setLista('${esc(n)}',1)">Confirmar</button>`
-      :e===1?`<button class="ab pay" onclick="setLista('${esc(n)}',2)"><svg class="ic"><use href="#i-money"/></svg>Marcar pago</button><button class="ab x" onclick="setLista('${esc(n)}',0)" title="Sacar de la lista">&#10005;</button>`
+      :e===1?`<button class="ab pay" onclick="setLista('${esc(n)}',2)"><svg class="ic"><use href="#i-money"/></svg>Ya pagó</button><button class="ab x" onclick="setLista('${esc(n)}',0)" title="Sacar de la lista">&#10005;</button>`
       :`<button class="ab x" onclick="setLista('${esc(n)}',1)">Deshacer</button>`;
     return `<div class="plr ${e===0?'off':''} ${e===2?'paid':''}">
       <div class="av">${e>=1?idx+1:'\u00b7'}</div>
@@ -720,7 +720,7 @@ function renderLista(){const L=listaInit();const conf=confirmados();
 let invitados=[],nTeams=2,asisSel={};
 function ovrDe(x){return Math.min(MAXOVR,BASE+(nivel(x.xp).l-1)*2)}
 function jugadorDe(n){
-  if(S.perfil&&n===S.perfil.nombre)return{n:n+' (tú)',pos:S.perfil.pos,ovr:overall(S.perfil)};
+  if(S.perfil&&n===S.perfil.nombre)return{n:n+' (yo)',pos:S.perfil.pos,ovr:overall(S.perfil)};
   const f=PARCHE.find(x=>x.n===n);
   return f?{n,pos:f.pos,ovr:ovrDe(f)}:{n,pos:'JUG',ovr:50};
 }
@@ -728,22 +728,22 @@ function poolHoy(){
   const L=S.lista,conf=L?L.orden.filter(n=>L.est[n]===2).slice(0,CUPOS):[];
   if(conf.length)return conf.map(jugadorDe).concat(invitados);
   const arr=PARCHE.map(f=>({n:f.n,pos:f.pos,ovr:ovrDe(f)}));
-  if(S.perfil)arr.unshift({n:S.perfil.nombre+' (tú)',pos:S.perfil.pos,ovr:overall(S.perfil)});
+  if(S.perfil)arr.unshift({n:S.perfil.nombre+' (yo)',pos:S.perfil.pos,ovr:overall(S.perfil)});
   return arr.concat(invitados);
 }
 function renderAsis(){
   $('asis').innerHTML=poolHoy().map((j,i)=>{const on=asisSel[j.n]!==false;
     return `<div class="pl" onclick="asisSel['${esc(j.n)}']=${on?'false':'true'};renderAsis()" style="cursor:pointer;opacity:${on?1:.4}">
       <div class="av">${j.pos}</div><div class="n">${esc(j.n)}<small>Overall ${j.ovr}</small></div>
-      <div class="st ${on?'a':''}">${on?'✓ Juega':'No vino'}</div></div>`}).join('');
+      <div class="st ${on?'a':''}">${on?'✓ Cayó':'No cayó'}</div></div>`}).join('');
 }
-function addInv(){const n=$('inv-n').value.trim();if(!n){toast('Nombre del invitado');return}
-  invitados.push({n,pos:'JUG',ovr:+$('inv-lvl').value});$('inv-n').value='';renderAsis();toast(n+' agregado')}
+function addInv(){const n=$('inv-n').value.trim();if(!n){toast('¿Y el nombre del colado?');return}
+  invitados.push({n,pos:'JUG',ovr:+$('inv-lvl').value});$('inv-n').value='';renderAsis();toast(n+' quedó adentro')}
 const TAM=4; // jueves: equipos de 4
 const chipS=n=>`<i class="chip" style="background:${({'NARANJA':'#F08A24','VERDE':'#C8FF32','BLANCO':'#F7F7F2','AZUL':'#3E7BFA','ROJO':'#E5432F','NEGRO':'#2A2A2A'})[n]||'#888'}"></i>`;
 function armar(){
   const jug=poolHoy().filter(j=>asisSel[j.n]!==false);
-  if(jug.length<TAM*2){toast('Mínimo '+TAM*2+' para armar dos equipos');return}
+  if(jug.length<TAM*2){toast('Mínimo '+TAM*2+', parce. Con menos no hay ni un cotejo');return}
   const nT=Math.floor(jug.length/TAM);
   // los que sobran esperan el primer cotejo (al azar, para que sea justo)
   const barajado=[...jug].sort(()=>Math.random()-.5);
@@ -764,10 +764,10 @@ let ultEqs=null,verAlin=false;
 
 /* ===== alineacion: rombo 1-2-1, derivado del equipo, nunca guardado ===== */
 const SLOTS=[
-  {k:'ULT',lb:'Último',x:50,y:112},
+  {k:'ULT',lb:'El último',x:50,y:112},
   {k:'IZQ',lb:'Carril izq.',x:24,y:82},
   {k:'DER',lb:'Carril der.',x:76,y:82},
-  {k:'PTA',lb:'Punta',x:50,y:44}
+  {k:'PTA',lb:'La punta',x:50,y:44}
 ];
 const AFIN={
   ARQ:{ULT:4,IZQ:1,DER:1,PTA:0}, DEF:{ULT:4,IZQ:2,DER:2,PTA:0},
@@ -797,9 +797,9 @@ function alinear(eq){
 function lumin(hex){const h=hex.replace('#','');
   return (.299*parseInt(h.slice(0,2),16)+.587*parseInt(h.slice(2,4),16)+.114*parseInt(h.slice(4,6),16))/255}
 function sobre(hex){return lumin(hex)>.6?'#000000':'#F7F7F2'}
-function iniciales(n){const w=n.replace(/\s*\(t[uú]\)/i,'').trim().split(/\s+/);
+function iniciales(n){const w=n.replace(/\s*\(yo\)/i,'').trim().split(/\s+/);
   return ((w.length>1?w[0][0]+w[1][0]:w[0].slice(0,2))||'?').toUpperCase()}
-function corto(n){const c=n.replace(/\s*\(t[uú]\)/i,'');return c.length>10?c.slice(0,9)+'…':c}
+function corto(n){const c=n.replace(/\s*\(yo\)/i,'');return c.length>10?c.slice(0,9)+'…':c}
 function canchaSVG(al,nom){
   const col=COLS[nom]||'#888',tx=sobre(col);
   return `<svg viewBox="0 0 100 150" class="cancha" role="img" aria-label="Alineación del equipo ${esc(nom)}">
@@ -819,7 +819,7 @@ function alineacionHTML(eq,nom){
   const al=alinear(eq);
   return `<div class="alin">${canchaSVG(al,nom)}
     ${al.map(j=>`<div class="leg"><b>${esc(j.slot.lb)}</b><span>${esc(j.n)} · ${esc(posNom(j.pos))} · ${j.ovr}</span></div>`).join('')}
-    <p class="cap">Rombo 1-2-1 · el arco propio abajo</p></div>`;
+    <p class="cap">Rombo 1-2-1 · su arco es el de abajo</p></div>`;
 }
 function toggleAlin(){verAlin=!verAlin;pintarEqs()}
 function pintarEqs(){
@@ -830,11 +830,11 @@ function pintarEqs(){
     return `<div class="sec" style="margin-top:18px">Equipo ${chipS(NOMN[k])}${NOMN[k]} <span style="letter-spacing:0;text-transform:none">Prom. ${Math.round(ps[k])}</span></div>
     ${e.map(j=>`<div class="pl"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}
     ${verAlin?alineacionHTML(e,NOMN[k]):''}`}).join('')
-    +(espera.length?`<div class="sec" style="margin-top:18px">Esperan el primer cotejo</div>${espera.map(j=>`<div class="pl" style="opacity:.6"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`:'')
-    +`<button class="btn ghost sm" onclick="toggleAlin()"><svg class="ic"><use href="#i-flag"/></svg>${verAlin?'Ocultar alineación':'Ver alineación en la cancha'}</button>
-    <button class="btn ghost sm" onclick="armar()"><svg class="ic"><use href="#i-shuffle"/></svg>Volver a barajar</button>
+    +(espera.length?`<div class="sec" style="margin-top:18px">Hacen fila pal primer cotejo</div>${espera.map(j=>`<div class="pl" style="opacity:.6"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`:'')
+    +`<button class="btn ghost sm" onclick="toggleAlin()"><svg class="ic"><use href="#i-flag"/></svg>${verAlin?'Ocultar la parada':'Ver cómo se paran en la cancha'}</button>
+    <button class="btn ghost sm" onclick="armar()"><svg class="ic"><use href="#i-shuffle"/></svg>Rebarajar</button>
     <button class="btn" onclick="startNoche()"><svg class="ic"><use href="#i-play"/></svg>Arrancar la noche</button>
-    <p style="font-size:12px;color:var(--chalk-dim);margin-top:10px">${eqs.length} equipos de ${TAM}. Diferencia entre el más fuerte y el más flojo: ${Math.round(Math.max(...ps)-Math.min(...ps))} puntos de promedio.</p>`;
+    <p style="font-size:12px;color:var(--chalk-dim);margin-top:10px">${eqs.length} equipos de ${TAM}. Entre el más berraco y el más flojito hay ${Math.round(Math.max(...ps)-Math.min(...ps))} puntos de promedio.</p>`;
 }
 
 /* ===== la noche: cotejos en vivo ===== */
@@ -861,7 +861,7 @@ function ganaCotejo(w){
   N.reta++;
   if(N.queue.length){N.queue.push(per);N.court=[gan,N.queue.shift()]}
   save();renderNoche();
-  toast(`Cotejo para ${G.nom} · racha ${G.racha}`)}
+  toast(`Cotejo pa' ${G.nom} · van ${G.racha} seguidos`)}
 function golCotejo(i,d){const N=S.night;if(!N)return;N.marc=N.marc||[0,0];
   N.marc[i]=Math.max(0,Math.min(30,N.marc[i]+d));save();
   const el=$('mc-'+i);if(el)el.textContent=N.marc[i]}
@@ -876,7 +876,7 @@ function vivo(N){
   return {h,enracha,manda,aguanta,goles,jugados:h.length};
 }
 function renderNoche(){
-  const N=S.night;if(!N){$('noche-box').innerHTML='<div class="empty">No hay noche activa. Arma los equipos primero.</div>';return}
+  const N=S.night;if(!N){$('noche-box').innerHTML='<div class="empty">No hay noche andando. Arme los equipos primero, parce.</div>';return}
   if(N.fin){renderCierre();return}
   const [a,b]=N.court,TA=N.teams[a],TB=N.teams[b];
   $('noche-h').textContent='Cotejo número '+N.reta;
@@ -888,27 +888,27 @@ function renderNoche(){
     <div class="sep"></div>
     <div class="marc"><button onclick="golCotejo(${i},-1)" aria-label="Quitar gol">−</button><b id="mc-${i}">${N.marc[i]}</b><button onclick="golCotejo(${i},1)" aria-label="Sumar gol">+</button></div>
     <button class="btn" onclick="ganaCotejo(${i})">Ganó</button></div>`};
-  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El <b style="color:var(--chalk)">planillero de la noche</b> pone el marcador y marca quién ganó cada cotejo.</p>
+  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El <b style="color:var(--chalk)">planillero</b> pone el marcador y dice quién ganó cada cotejo.</p>
     <div class="vs-wrap">${tj(TA)}<div class="vs-mid">VS</div>${tj(TB)}</div>
-    ${N.queue.length?`<div class="sec">Esperan turno</div>${N.queue.map(k=>`<div class="pl" style="opacity:.6"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${chip(N.teams[k].nom)}${N.teams[k].nom}<small>${N.teams[k].players.map(p=>p.n.replace(' (tú)','')).join(', ')}</small></div></div>`).join('')}`:''}
+    ${N.queue.length?`<div class="sec">Hacen fila</div>${N.queue.map(k=>`<div class="pl" style="opacity:.6"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${chip(N.teams[k].nom)}${N.teams[k].nom}<small>${N.teams[k].players.map(p=>p.n.replace(' (yo)','')).join(', ')}</small></div></div>`).join('')}`:''}
     ${vivoHTML(N)}
     <button class="btn ghost" onclick="S.night.fin=true;save();renderNoche()"><svg class="ic"><use href="#i-flag"/></svg>Cerrar la noche</button>`}
 function vivoHTML(N){
   const v=vivo(N);
-  if(!v.jugados)return `<div class="sec">Cómo va la noche</div>
-    <div class="empty">Todavía no se juega nada. Pongan el marcador y marquen quién ganó.</div>`;
-  return `<div class="sec">Cómo va la noche</div>
+  if(!v.jugados)return `<div class="sec">Cómo va la vuelta</div>
+    <div class="empty">Todavía no ha rodado el balón. Pongan el marcador y digan quién ganó.</div>`;
+  return `<div class="sec">Cómo va la vuelta</div>
   <div class="viv">
-    <div class="t ${v.enracha?'hot':''}"><small>Enrachado</small><b>${v.enracha?esc(v.enracha.nom):'Nadie'}</b>
-      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.enracha?`${v.enracha.racha} cotejo${v.enracha.racha!==1?'s':''} seguido${v.enracha.racha!==1?'s':''}`:'todos van perdiendo por turnos'}</small></div>
+    <div class="t ${v.enracha?'hot':''}"><small>Prendido</small><b>${v.enracha?esc(v.enracha.nom):'Nadie'}</b>
+      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.enracha?`${v.enracha.racha} cotejo${v.enracha.racha!==1?'s':''} seguido${v.enracha.racha!==1?'s':''}`:'todos van cayendo por turnos'}</small></div>
     <div class="t"><small>Va mandando</small><b>${esc(v.manda.t.nom)}</b>
       <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.manda.w} ganado${v.manda.w!==1?'s':''} de ${v.jugados}</small></div>
-    <div class="t"><small>Aguanta la cancha</small><b>${v.aguanta?esc(v.aguanta[0].replace(' (tú)','')):'—'}</b>
+    <div class="t"><small>Aguanta la cancha</small><b>${v.aguanta?esc(v.aguanta[0].replace(' (yo)','')):'—'}</b>
       <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.aguanta?`${v.aguanta[1].mejor} seguidos sin salir`:'nadie repite todavía'}</small></div>
     <div class="t"><small>Goles</small><b>${v.goles}</b>
       <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">en ${v.jugados} cotejo${v.jugados!==1?'s':''}</small></div>
   </div>
-  <div class="sec">Cotejos jugados</div>
+  <div class="sec">Los cotejos</div>
   ${v.h.slice().reverse().map(x=>`<div class="cot"><span>Cotejo ${x.c}</span>
     <span class="mk">${chip(x.gan)}${esc(x.gan)} ${x.gg}<em>–</em>${x.gp} ${esc(x.per)}</span></div>`).join('')}`;
 }
@@ -923,17 +923,17 @@ function renderCierre(){
   const v=vivo(N);
   $('noche-h').textContent='Fin de la noche';
   $('noche-box').innerHTML=`
-    <div class="gan"><span><svg class="ic"><use href="#i-crown"/></svg> Rey de la cancha</span><b>${rey?esc(rey[0]):'—'}</b><span>${rey?`aguantó ${rey[1].mejor} cotejos seguidos`:''}</span></div>
-    ${mvp?`<div class="gan"><span><svg class="ic"><use href="#i-target"/></svg> Jugador de la noche</span><b>${esc(mvp.n.replace(' (tú)',''))}</b><span>${mvp.g} gol${mvp.g!==1?'es':''} de la noche</span></div>`:''}
+    <div class="gan"><span><svg class="ic"><use href="#i-crown"/></svg> Rey de la cancha</span><b>${rey?esc(rey[0]):'—'}</b><span>${rey?`aguantó ${rey[1].mejor} cotejos sin salir`:''}</span></div>
+    ${mvp?`<div class="gan"><span><svg class="ic"><use href="#i-target"/></svg> Jugador de la noche</span><b>${esc(mvp.n.replace(' (yo)',''))}</b><span>le metió ${mvp.g} gol${mvp.g!==1?'es':''} a la noche</span></div>`:''}
     ${v.jugados?`<div class="sec">Los cotejos</div>${v.h.slice().reverse().map(x=>`<div class="cot"><span>Cotejo ${x.c}</span><span class="mk">${chip(x.gan)}${esc(x.gan)} ${x.gg}<em>–</em>${x.gp} ${esc(x.per)}</span></div>`).join('')}`:''}
-    <div class="sec">Goles de la noche <span style="letter-spacing:0;text-transform:none;font-size:11px">los pone el planillero</span></div>
+    <div class="sec">Los goles de la noche <span style="letter-spacing:0;text-transform:none;font-size:11px">los pone el planillero</span></div>
     ${rows.map(([n])=>`<div class="step" style="padding:8px 12px"><div class="lb" style="font-size:13.5px">${esc(n)}</div>
       <div class="ct"><button onclick="golN('${esc(n)}',-1)">−</button><b id="gn-${btoa(unescape(encodeURIComponent(n))).replace(/=/g,'')}">${N.goles[n]||0}</b><button onclick="golN('${esc(n)}',1)">+</button></div></div>`).join('')}
-    <div class="sec">Tabla de la noche</div>
+    <div class="sec">Cómo quedó la noche</div>
     <table class="tabla"><tr><th>Jugador</th><th>Cotejos</th><th>Gan.</th><th>Racha</th></tr>
     ${rows.map(([n,v])=>`<tr class="${S.perfil&&n.startsWith(S.perfil.nombre)?'me':''}"><td>${esc(n)}</td><td>${v.j}</td><td>${v.g}</td><td>${v.mejor}</td></tr>`).join('')}</table>
     <button class="btn" onclick="guardarNoche()">Guardar la noche</button>
-    <button class="btn ghost sm" onclick="if(confirm('¿Descartar la noche sin guardar?')){S.night=null;save();go('parche')}">Descartar</button>`}
+    <button class="btn ghost sm" onclick="if(confirm('¿Botar la noche sin guardar? No hay vuelta atrás.')){S.night=null;save();go('parche')}">Botar todo</button>`}
 function golN(n,d){const N=S.night;N.goles[n]=Math.max(0,Math.min(20,(N.goles[n]||0)+d));save();
   const id='gn-'+btoa(unescape(encodeURIComponent(n))).replace(/=/g,'');if($(id))$(id).textContent=N.goles[n]}
 let fN={g:0,a:0};

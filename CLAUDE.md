@@ -66,7 +66,14 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 - Pantalla de inicio / PWA: `js-icono-app.svg` (el isotipo al 80%, para que la máscara no recorte
   el balón) y los PNG `marca/icon-180|192|512.png`, declarados en `manifest.webmanifest`.
   Si cambia el isotipo hay que **regenerar los PNG**; el navegador no los deriva del SVG.
-- **Tono**: el humor del app es negro y autoburlón, de parche. Ver las frases de posición en `POS`.
+- **Tono**: jerga colombiana de parche, humor negro y autoburlón. Reglas del copy:
+  - Se habla de **usted**, no de tú ("arme su carta", "marque quién cayó"). Es lo más colombiano.
+  - Vocabulario del parche: *parce, llave, colado, vuelta, camello, berraco, cayó, lucas, picadito,
+    prendido, va mandando*. Nada de español neutro.
+  - Uno se marca a sí mismo con `(yo)`, no `(tú)`. Varias funciones lo recortan por regex — si cambia
+    el marcador hay que tocar `iniciales()`, `corto()` y los `.replace(' (yo)','')`.
+  - Sin insultos ni slurs en la interfaz. El chiste va contra uno mismo, no contra nadie más.
+  - Las frases de posición y sus remates viven en `POS`.
 
 ## Fase siguiente (cuando el grupo valide)
 
