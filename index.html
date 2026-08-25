@@ -114,6 +114,8 @@ nav button.on{color:var(--yellow)}
 body.light .abierta .barra i{background:#1C5E36}
 body.light .cerrada{border-color:#1C5E36}
 body.light .cerrada .ic,body.light .cerrada b{color:#1C5E36}
+.pl .st.planilla{color:var(--yellow);font-weight:600;text-align:right;max-width:74px;line-height:1.25}
+body.light .pl .st.planilla{color:#1C5E36}
 .ritmo.baja{border-color:#FF8A7A}.ritmo.baja b,.ritmo.baja .ic{color:#FF8A7A}
 body.light .ritmo.alta{border-color:#1B7A46}body.light .ritmo.alta b,body.light .ritmo.alta .ic{color:#1B7A46}
 body.light .ritmo.baja{border-color:#C0392B}body.light .ritmo.baja b,body.light .ritmo.baja .ic{color:#C0392B}
@@ -445,7 +447,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="toast" id="toast"></div>
 
 <script>
-const BUILD='2026-08-25T02:10:42Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
+const BUILD='2026-08-25T02:21:23Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
 function buildTxt(){
   if(BUILD==='dev')return 'versión local, sin publicar';
   const d=new Date(BUILD);
@@ -986,9 +988,9 @@ function renderNoche(){
     <div class="sep"></div>
     <div class="marc"><button onclick="golCotejo(${i},-1)" aria-label="Quitar gol">−</button><b id="mc-${i}">${N.marc[i]}</b><button onclick="golCotejo(${i},1)" aria-label="Sumar gol">+</button></div>
     <button class="btn" onclick="ganaCotejo(${i})">Ganó</button></div>`};
-  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El <b style="color:var(--chalk)">planillero</b> pone el marcador y dice quién ganó cada cotejo.</p>
+  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El celular lo lleva <b style="color:var(--chalk)">el equipo que espera</b>, nunca el que está jugando: ellos ponen el marcador y dicen quién ganó.</p>
     <div class="vs-wrap">${tj(TA)}<div class="vs-mid">VS</div>${tj(TB)}</div>
-    ${N.queue.length?`<div class="sec">Hacen fila</div>${N.queue.map(k=>`<div class="pl" style="opacity:.6"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${chip(N.teams[k].nom)}${N.teams[k].nom}<small>${N.teams[k].players.map(p=>p.n.replace(' (yo)','')).join(', ')}</small></div></div>`).join('')}`:''}
+    ${N.queue.length?`<div class="sec">Hacen fila</div>${N.queue.map((k,i)=>`<div class="pl" style="opacity:${i?.6:1}"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${chip(N.teams[k].nom)}${N.teams[k].nom}<small>${N.teams[k].players.map(p=>p.n.replace(' (yo)','')).join(', ')}</small></div>${i?'':'<div class="st planilla">Lleva la planilla</div>'}</div>`).join('')}`:''}
     ${vivoHTML(N)}
     <button class="btn ghost" onclick="S.night.fin=true;save();renderNoche()"><svg class="ic"><use href="#i-flag"/></svg>Cerrar la noche</button>`}
 function vivoHTML(N){

@@ -56,8 +56,10 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 
 ## Modelo social (decisiones tomadas, no cambiar sin hablarlo)
 
-- **Planillero**: una persona por noche lleva el celular. Pone el marcador y marca quién ganó cada
-  **cotejo** (lo hace el equipo que espera, no el que juega) y al cerrar la noche registra los goles de todos.
+- **Planillero**: el celular lo lleva **el equipo que espera**, nunca el que está jugando. Rota solo:
+  al terminar cada cotejo, el que sale recibe el celular. La app marca en pantalla a quién le toca
+  ("Lleva la planilla"). Así el que aguanta la cancha nunca queda con el celular en la mano.
+  Al cerrar la noche, alguien registra los goles de todos (ahí ya nadie está jugando).
 - **Vocabulario**: se dice *cotejo*, no *reta*. En el código el contador sigue llamándose `N.reta`
   a propósito, para no romper las noches ya guardadas en `localStorage`.
 - **Rey de la cancha**: quien aguantó más cotejos seguidos sin salir. Es el premio de la noche.
