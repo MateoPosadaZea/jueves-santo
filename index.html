@@ -89,6 +89,23 @@ nav button.on{color:var(--yellow)}
 .carta .stats{position:absolute;left:30px;right:30px;bottom:22px;display:grid;grid-template-columns:repeat(3,1fr);gap:5px 10px;font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:.08em}
 .carta .stats div{display:flex;justify-content:space-between;border-bottom:1px solid rgba(243,239,226,.12)}
 .carta .stats b{color:var(--yellow);font-weight:400}
+.carta .ovr u{display:flex;align-items:center;justify-content:center;width:26px;height:26px;margin:8px auto 0;
+  border-radius:50%;border:1.5px solid currentColor;text-decoration:none}
+.carta .ovr u .ic{width:15px;height:15px}
+.carta .ovr u.alta{color:#8FE3A8}
+.carta .ovr u.media{color:var(--chalk-dim)}
+.carta .ovr u.baja{color:#FF8A7A}
+.ritmo{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+  border-radius:14px;padding:10px 13px;margin:0 auto 12px;max-width:320px}
+.ritmo .ic{width:19px;height:19px;flex-shrink:0}
+.ritmo b{font-family:var(--display);font-weight:800;font-size:15px;letter-spacing:.05em;text-transform:uppercase}
+.ritmo small{color:var(--chalk-dim);font-size:12px;line-height:1.3}
+.ritmo.alta{border-color:#8FE3A8}.ritmo.alta b,.ritmo.alta .ic{color:#8FE3A8}
+.ritmo.media b,.ritmo.media .ic{color:var(--chalk-dim)}
+.ritmo.baja{border-color:#FF8A7A}.ritmo.baja b,.ritmo.baja .ic{color:#FF8A7A}
+body.light .ritmo.alta{border-color:#1B7A46}body.light .ritmo.alta b,body.light .ritmo.alta .ic{color:#1B7A46}
+body.light .ritmo.baja{border-color:#C0392B}body.light .ritmo.baja b,body.light .ritmo.baja .ic{color:#C0392B}
+body.light .carta .ovr u.alta{color:#8FE3A8}
 .carta.draft{opacity:.45;filter:grayscale(1)}
 .xpbar{max-width:320px;margin:0 auto 6px}
 .xpbar .bar{height:7px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
@@ -267,6 +284,9 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <symbol id="i-card" viewBox="0 0 24 24"><rect x="2.8" y="4.6" width="18.4" height="14.8" rx="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="8.9" cy="10.4" r="2.15" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.6 16.6c.55-1.9 1.8-2.85 3.3-2.85s2.75.95 3.3 2.85" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M15.3 9.6h3.3M15.3 12.6h3.3M15.3 15.6h2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+<symbol id="i-alta" viewBox="0 0 24 24"><path d="M12 19V6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M6.2 11.6L12 5.6l5.8 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-media" viewBox="0 0 24 24"><path d="M5.5 12h13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+<symbol id="i-baja" viewBox="0 0 24 24"><path d="M12 5v13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M6.2 12.4L12 18.4l5.8-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 <symbol id="i-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.75" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 8.15l3.35 2.43-1.28 3.94h-4.14L8.65 10.58z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M12 3.25v4.9M19.72 9.9l-4.37 1.42M16.77 19.02l-2.7-3.72M7.23 19.02l2.7-3.72M4.28 9.9l4.37 1.42" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></symbol>
 <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 2.6c4.1 3.35 6.3 6.72 6.3 10.02a6.3 6.3 0 11-12.6 0c0-2.05.86-3.98 2.2-5.6.15 1.28.72 2.2 1.6 2.53.9-2.6.78-4.9-.5-6.95 1.15.28 2.16.95 3 2z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 21a3.4 3.4 0 01-2.1-6.1c.36 1 .95 1.6 1.72 1.85-.34-1.6-.1-2.9.72-4 1.16 1.3 1.76 2.6 1.76 3.85A3.4 3.4 0 0112 21z" fill="currentColor" opacity=".95"/></symbol>
 <symbol id="i-list" viewBox="0 0 24 24"><rect x="4.6" y="4.4" width="14.8" height="16.4" rx="3.4" fill="none" stroke="currentColor" stroke-width="1.6"/><rect x="8.6" y="2.4" width="6.8" height="4" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M8.4 12.1l1.85 1.85 3.5-3.6" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M8.4 17.2h7.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
@@ -297,6 +317,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 
 <section class="screen on" id="s-inicio">
   <div id="carta-box"></div>
+  <div id="ritmo-box"></div>
   <div class="xpbar" id="xpbar"></div>
   <div class="hint" id="carta-hint"></div>
   <div class="sec">Las vueltas de la semana <span class="racha" id="racha"></span></div>
@@ -411,7 +432,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="toast" id="toast"></div>
 
 <script>
-const BUILD='2026-08-25T01:57:31Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
+const BUILD='2026-08-25T02:02:33Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
 function buildTxt(){
   if(BUILD==='dev')return 'versión local, sin publicar';
   const d=new Date(BUILD);
@@ -486,12 +507,58 @@ function go(s){document.querySelectorAll('.screen').forEach(e=>e.classList.remov
 function semana(){const now=Date.now();return S.partidos.filter(p=>now-p.t<7*864e5)}
 function rachaCalc(){let r=0;for(const p of S.partidos){if(p.res==='g')r++;else break}return r}
 
+/* ===== ritmo: la flechita, estilo FIFA =====
+   Se calcula de los partidos, siempre. Nunca se guarda: cambiar la fórmula
+   no puede corromper el historial. */
+const RITMO_N=5, RITMO_DIAS=16;
+function ritmo(){
+  const ult=S.partidos.slice(0,RITMO_N);              // ya vienen del más nuevo al más viejo
+  if(S.partidos.length<2)return{k:'media',tx:'Todavía sin ritmo',por:'Con un par de partidos ya se sabe cómo anda.'};
+  const dias=Math.floor((Date.now()-S.partidos[0].t)/864e5);
+  if(dias>=RITMO_DIAS)return{k:'baja',tx:'Frío',por:`Lleva ${dias} días sin caer a la cancha.`};
+
+  let suma=0,peso=0;
+  ult.forEach((x,i)=>{
+    const w=1-i*0.15;                                  // lo de anoche pesa más que lo del mes pasado
+    let v={g:2,e:.5,p:-1}[x.res]||0;
+    v+=Math.min(x.g||0,4)*1.2;
+    v+=Math.min(x.a||0,4)*0.8;
+    if(x.valla)v+=1;
+    suma+=v*w;peso+=w;
+  });
+  const prom=suma/peso;
+
+  // rachas, para explicar la flecha en lugar de solo mostrarla
+  let sinGanar=0;for(const x of S.partidos){if(x.res==='g')break;sinGanar++}
+  let sinGol=0;for(const x of S.partidos){if((x.g||0)>0)break;sinGol++}
+  let ganadas=0;for(const x of S.partidos){if(x.res!=='g')break;ganadas++}
+  const golesUlt=ult.reduce((a,x)=>a+(x.g||0),0);
+
+  if(prom>=2.3){
+    const por=ganadas>=2?`${ganadas} ganadas seguidas.`
+      :golesUlt>=3?`${golesUlt} goles en los últimos ${ult.length}.`
+      :'Viene rindiendo en la cancha.';
+    return{k:'alta',tx:'Prendido',por};
+  }
+  if(prom<=0.6){
+    const por=sinGanar>=3?`Lleva ${sinGanar} sin ganar.`
+      :sinGol>=4?`Sin meter gol hace ${sinGol} partidos.`
+      :'Viene flojito.';
+    return{k:'baja',tx:'Apagado',por};
+  }
+  const por=sinGol>=3?`Sin meter gol hace ${sinGol}, pero ahí va.`
+    :sinGanar>=2?`Lleva ${sinGanar} sin ganar, nada grave.`
+    :'Ni fu ni fa. Va normal.';
+  return{k:'media',tx:'Normal',por};
+}
+const RITMO_IC={alta:'i-alta',media:'i-media',baja:'i-baja'};
+
 /* ===== carta ===== */
 function cartaHTML(p){
   if(!p)return `<div class="carta draft"><div class="ovr"><b>--</b><i>POS</i><em>PIE</em></div><div class="num">#--</div><div class="foto">${avatarSVG(null,152)}</div><div class="nom">TU NOMBRE</div><div class="meta">Hágase la carta</div><div class="stats">${STATS.map(([k])=>`<div>${k}<b>--</b></div>`).join('')}</div></div>`;
-  const nv=nivel(p.xp);
+  const nv=nivel(p.xp),r=ritmo();
   return `<div class="carta">
-    <div class="ovr"><b id="ovr-n">${overall(p)}</b><i>${p.pos}</i><em>${p.pie.slice(0,3).toUpperCase()}</em></div>
+    <div class="ovr"><b id="ovr-n">${overall(p)}</b><i>${p.pos}</i><em>${p.pie.slice(0,3).toUpperCase()}</em><u class="${r.k}" title="${esc(r.tx)}"><svg class="ic"><use href="#${RITMO_IC[r.k]}"/></svg></u></div>
     <div class="num">#${p.num}</div><div class="lvl">Nivel ${nv.l}</div>
     <div class="foto">${p.foto?`<img src="${p.foto}" alt="">`:avatarSVG(p.av,152)}</div>
     <div class="nom">${esc(p.nombre)}</div>
@@ -504,6 +571,10 @@ function render(){
   const p=S.perfil;
 
   $('carta-box').innerHTML=cartaHTML(p);
+  if(p){const r=ritmo();
+    $('ritmo-box').innerHTML=`<div class="ritmo ${r.k}"><svg class="ic"><use href="#${RITMO_IC[r.k]}"/></svg>
+      <div><b>${esc(r.tx)}</b><small style="display:block">${esc(r.por)}</small></div></div>`;
+  }else $('ritmo-box').innerHTML='';
   if(p){const nv=nivel(p.xp);
     $('xpbar').innerHTML=`<div class="bar"><i style="width:${nv.into/nv.need*100}%"></i></div><small><span>Nivel ${nv.l}</span><span>${nv.into} / ${nv.need} XP</span></small>`;
     $('carta-hint').innerHTML=`El overall no sube hablando paja. <a href="#" onclick="go('partido');return false" style="color:var(--yellow)">Meta el partido →</a>`;

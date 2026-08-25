@@ -33,10 +33,13 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 - `nivel(xp)` = curva incremental (cada nivel cuesta 1.18x el anterior).
 - `statVal(p,k)` deriva cada stat de hechos reales: TIR de goles, PAS de asistencias,
   DEF de vallas invictas, FIS/RIT de partidos jugados.
+- `ritmo()` = la flechita estilo FIFA (prendido / normal / apagado / frío). Promedio ponderado
+  de los últimos 5 partidos, lo más reciente pesa más; más de 16 días sin jugar la baja sola.
+  Siempre trae el porqué ("3 ganadas seguidas", "lleva 5 sin ganar") — la flecha sin razón no sirve.
 
 ## Pantallas
 
-1. **Carta** — carta del jugador (overall, stats, avatar), barra de XP, misiones semanales, temporada.
+1. **Carta** — carta del jugador (overall, stats, avatar), flechita de ritmo, barra de XP, misiones, temporada.
 2. **Partido** — registro manual de un partido suelto (resultado, goles, asistencias, valla invicta).
 3. **Parche** — tabla del grupo y entrada a Armar equipos.
 4. **Armar equipos** — asistencia, equipos de 4 equilibrados por overall, y **ver alineación**:
