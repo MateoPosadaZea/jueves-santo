@@ -972,16 +972,70 @@ function themeToggle(){S.prefs=S.prefs||{};
   save();applyTheme()}
 
 /* ===== música de menú (loop original, Tone.js) ===== */
-let musOn=false,musReady=false;
+let musOn=false,musReady=false,musCargando=false,musCtx=null,musPendiente=false;
 function musBtn(){const b=$('b-mus');b.classList.toggle('on',musOn);b.setAttribute('aria-pressed',musOn?'true':'false')}
-function musToggle(){
-  if(musOn){Tone.Transport.stop();musOn=false;musBtn();return}
-  if(musReady){Tone.start();Tone.Transport.start();musOn=true;musBtn();return}
+
+/* Por qué esto es así:
+   iOS solo deja arrancar audio DENTRO del toque del usuario, y no perdona esperas.
+   Antes cargábamos Tone.js por CDN al tocar el botón y arrancábamos en el onload:
+   para cuando el script llegaba, el permiso del toque ya se había vencido y el
+   celular quedaba mudo. En escritorio no se notaba porque la política de autoplay
+   de Chrome es mucho más floja.
+   Ahora Tone.js se va cargando solito con el primer toque en CUALQUIER parte de la
+   app, así que cuando la persona toca el botón de música ya está listo y
+   Tone.start() corre dentro del gesto, que es lo único que iOS acepta. */
+function precargarTone(){
+  if(musReady||musCargando)return;
+  musCargando=true;
   const sc=document.createElement('script');
   sc.src='https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js';
-  sc.onload=()=>{setupMusic();musReady=true;Tone.start();Tone.Transport.start();musOn=true;musBtn();toast('Suena la cancha')};
-  sc.onerror=()=>toast('No cargó el audio (¿sin internet?)');
+  sc.onload=()=>{
+    musCargando=false;musReady=true;
+    try{setupMusic()}catch(e){musReady=false;return}
+    if(musPendiente){musPendiente=false;arrancarMus()}   // por si alcanzó a tocar el botón
+  };
+  sc.onerror=()=>{musCargando=false;if(musPendiente){musPendiente=false;toast('No cargó el audio. ¿Hay internet?')}};
   document.head.appendChild(sc);
+}
+addEventListener('pointerdown',precargarTone,{once:true,passive:true});
+
+/* despertar el audio dentro del gesto; en iOS un buffer mudo termina de destrabarlo */
+function destrabarAudio(){
+  try{
+    if(navigator.audioSession)navigator.audioSession.type='playback'; // que no lo calle el switch de silencio
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC)return;
+    if(!musCtx)musCtx=new AC();
+    if(musCtx.state==='suspended')musCtx.resume();
+    const src=musCtx.createBufferSource();
+    src.buffer=musCtx.createBuffer(1,1,22050);
+    src.connect(musCtx.destination);src.start(0);
+  }catch(e){}
+}
+function musToggle(){
+  if(musOn){try{Tone.Transport.stop()}catch(e){}musOn=false;musBtn();return}
+  destrabarAudio();
+  if(musReady){arrancarMus();return}
+  musPendiente=true;precargarTone();
+  toast('Cargando la música… tóquelo otra vez en un segundo');
+}
+function arrancarMus(){
+  const dale=()=>{
+    try{Tone.Transport.start()}catch(e){}
+    musOn=true;musBtn();toast('Suena la cancha');avisarSiMudo();
+  };
+  try{
+    const p=Tone.start();
+    if(p&&p.then)p.then(dale).catch(()=>{musOn=false;musBtn();toast('El celu no dejó sonar. Tóquelo otra vez')});
+    else dale();
+  }catch(e){musOn=false;musBtn();toast('El celu no dejó sonar. Tóquelo otra vez')}
+}
+/* si quedó dormido, decirlo en vez de quedarse mudo sin explicación */
+function avisarSiMudo(){
+  setTimeout(()=>{try{
+    if(Tone.context.state!=='running'){musOn=false;musBtn();
+      toast('Quedó en silencio. Mire el switch lateral y súbale volumen')}
+  }catch(e){}},800);
 }
 function setupMusic(){
   Tone.Transport.bpm.value=104;Tone.Destination.volume.value=-6;

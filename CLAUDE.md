@@ -13,7 +13,13 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 - HTML/CSS/JS vanilla en un solo archivo. Sin build, sin dependencias, sin framework.
 - Persistencia: `localStorage` (clave `cancha_v2`), con fallback en memoria. La noche en curso
   vive en `S.night` y sobrevive recargas: nunca se pierde por navegar a otra pantalla.
-- Tone.js por CDN, solo para la música de menú (carga diferida al primer toque).
+- Tone.js por CDN, solo para la música de menú. **Se precarga con el primer toque en cualquier
+  parte de la app**, no al tocar el botón de música. Es a propósito: iOS solo deja arrancar audio
+  dentro del gesto del usuario, y si uno espera a que llegue el script por CDN el permiso ya se
+  venció y el celular queda mudo (en escritorio no se nota, la política de autoplay es más floja).
+  `Tone.start()` tiene que correr sincrónicamente dentro del handler del toque. No volver a
+  moverlo a un `onload`. Además se pone `navigator.audioSession.type='playback'` para que el
+  switch de silencio del iPhone no lo calle.
 - Fuentes: Hanken Grotesk (títulos/números) + Be Vietnam Pro (texto), vía Google Fonts.
 - Iconografía: sprite SVG inline con `<symbol>` + `<use href="#i-...">`. Sin emojis en UI.
 - Avatares: SVG generado en runtime (`avatarSVG`), estilo anime 80s. No usa fotos.
