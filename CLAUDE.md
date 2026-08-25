@@ -48,7 +48,7 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 
 ## Marca
 
-- Paleta: tinta `#0E1412`, superficie `#161D1A`, verde cancha `#1C5E36`,
+- Paleta: tinta `#000000` (negro puro, por contraste), superficie `#161D1A`, verde cancha `#1C5E36`,
   verde eléctrico `#C8FF32`, hueso `#F7F7F2`. Amarillo `#F2E14C` solo para detalles.
 - Modo claro: fondo blanco; el eléctrico se sustituye por verde cancha (ilegible sobre blanco).
 - Sin degradados. Color plano + línea.
