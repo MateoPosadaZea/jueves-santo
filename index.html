@@ -48,8 +48,14 @@ main{flex:1;padding:22px 18px 92px}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(11,26,20,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
 nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+nav .in.n6{grid-template-columns:repeat(6,1fr)}
+nav button{position:relative}
+nav #nav-noche .ic{color:var(--volt)}
+body.light nav #nav-noche .ic{color:#1C5E36}
+nav #nav-noche i.viva{position:absolute;top:2px;right:calc(50% - 16px);width:7px;height:7px;border-radius:50%;background:var(--red);animation:lat 1.4s infinite}
+@keyframes lat{0%,100%{opacity:1}50%{opacity:.25}}
 nav button{padding:6px 0;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--chalk-dim);display:flex;flex-direction:column;gap:3px;align-items:center}
 nav button span{font-size:20px;line-height:1}
 nav button.on{color:var(--yellow)}
@@ -181,6 +187,12 @@ nav .ic{width:22px;height:22px;vertical-align:0}
 body.light .ab.pay{background:#1C5E36;color:#F7F7F2;border-color:#1C5E36}
 body.light .est.deb{color:#1C5E36}body.light .est.ok{color:#1B7A46}
 .chip{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.hbtn{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  border:1.5px solid var(--line);background:transparent;color:var(--chalk-dim);transition:background .15s,color .15s,border-color .15s}
+.hbtn .ic{width:20px;height:20px}
+.hbtn.on{background:var(--volt);border-color:var(--volt);color:#000}
+body.light .hbtn{border-color:rgba(0,0,0,.18);color:#6E7671}
+body.light .hbtn.on{background:#1C5E36;border-color:#1C5E36;color:#F7F7F2}
 .alin{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;margin-top:10px}
 .cancha{display:block;width:100%;max-width:236px;margin:0 auto 6px}
 .alin .leg{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12.5px;padding:6px 0;border-bottom:1px solid var(--line)}
@@ -191,7 +203,28 @@ body.light .est.deb{color:#1C5E36}body.light .est.ok{color:#1B7A46}
 .vs-col h4{font-family:var(--display);font-weight:800;font-size:20px;text-transform:uppercase;text-align:center;letter-spacing:.01em;margin-bottom:2px}
 .vs-col .rr{text-align:center;font-size:12px;color:var(--chalk-dim);min-height:16px;margin-bottom:8px}
 .vs-col .nm{font-size:13px;padding:3px 0;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.vs-col .btn{margin-top:auto;padding:18px 4px;font-size:17px}
+.vs-col .nms{margin-bottom:4px}
+.vs-col .nms .nm:last-child{border-bottom:0}
+.vs-col .marc{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 4px}
+.vs-col .marc button{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);color:var(--chalk);font-size:19px;line-height:1;flex-shrink:0}
+.vs-col .marc b{font-family:var(--display);font-weight:800;font-size:30px;min-width:34px;text-align:center;color:var(--chalk)}
+.vs-col .marc small{position:absolute;opacity:0}
+.vs-col .btn{margin-top:auto;padding:16px 4px;font-size:17px}
+.vs-col .sep{height:1px;background:var(--line);margin:12px 0 0}
+.viv{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:2px}
+.viv .t{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 12px}
+.viv .t b{display:block;font-family:var(--display);font-weight:800;font-size:21px;line-height:1.1;color:var(--chalk);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.viv .t small{display:block;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--chalk-dim);margin-bottom:3px}
+.viv .t.wide{grid-column:1 / -1}
+.viv .t.hot{border-color:var(--volt)}
+.viv .t.hot b{color:var(--yellow)}
+body.light .viv .t.hot b{color:#1C5E36}
+.cot{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;padding:8px 0;border-bottom:1px solid var(--line);color:var(--chalk-dim)}
+.cot:last-child{border-bottom:0}
+.cot .mk{font-family:var(--display);font-weight:800;font-size:14.5px;letter-spacing:.03em;color:var(--chalk);
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.cot .mk em{font-style:normal;color:var(--chalk-dim);margin:0 3px}
 .vs-mid{display:flex;align-items:center;font-family:var(--display);font-weight:800;font-size:20px;color:var(--chalk-dim)}
 /* ===== modo claro ===== */
 body.light{--night:#FFFFFF;--chalk:#000000;--chalk-dim:#6E7671;--card:#F2F4F0;--line:rgba(0,0,0,.12)}
@@ -247,7 +280,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="app">
 <header>
   <div class="brand" style="display:flex;align-items:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="30" height="30"><rect width="120" height="120" rx="30" fill="#1C5E36"/><path d="M56 46L60 68" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M60 68L76 48" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M76 48L90 30" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M60 68L48 86" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M48 86L34 96" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M56 46L40 44" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M40 44L28 54" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M56 46L72 32" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M72 32L78 20" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><circle cx="54" cy="32" r="8.4" fill="#F7F7F2"/><circle cx="96" cy="16" r="9" fill="#C8FF32"/></svg><span>Jueves Santo</span></div>
-  <div style="display:flex;align-items:center;gap:6px"><button id="b-mus" onclick="musToggle()" style="font-size:19px;opacity:.5;display:flex" title="Música de menú"><svg class="ic"><use href="#i-music"/></svg></button><button id="b-th" onclick="themeToggle()" style="font-size:19px;display:flex" title="Modo claro/oscuro"><svg class="ic"><use href="#i-sun"/></svg></button><small id="hdr" style="display:none"></small></div>
+  <div style="display:flex;align-items:center;gap:14px"><button id="b-mus" class="hbtn" onclick="musToggle()" title="Música de menú" aria-pressed="false"><svg class="ic"><use href="#i-music"/></svg></button><button id="b-th" class="hbtn" onclick="themeToggle()" title="Modo claro/oscuro"><svg class="ic"><use href="#i-sun"/></svg></button><small id="hdr" style="display:none"></small></div>
 </header>
 <main>
 
@@ -295,7 +328,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <section class="screen" id="s-armar">
   <button class="back" onclick="go('parche')">← Parche</button>
   <h1>Equipos del jueves</h1>
-  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Marca quién vino. La app arma equipos de 4 parejos con el overall de cada carta; los que sobran esperan la primera reta.</p>
+  <p style="color:var(--chalk-dim);font-size:12.5px;margin:3px 0 6px;line-height:1.4">Marca quién vino. La app arma equipos de 4 parejos con el overall de cada carta; los que sobran esperan el primer cotejo.</p>
   <div class="sec">¿Quién está en la cancha?</div>
   <div id="asis"></div>
   <div style="display:flex;gap:8px;margin-top:10px"><input id="inv-n" placeholder="Invitado (parcero de alguien)" maxlength="14" style="flex:2"><select id="inv-lvl" style="flex:1"><option value="50">Normal</option><option value="58">Bueno</option><option value="66">Crack</option></select></div>
@@ -362,6 +395,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <button class="on" data-s="inicio" onclick="go('inicio')"><svg class="ic"><use href="#i-card"/></svg>Carta</button>
   <button data-s="partido" onclick="go('partido')"><svg class="ic"><use href="#i-ball"/></svg>Partido</button>
   <button data-s="parche" onclick="go('parche')"><svg class="ic"><use href="#i-flame"/></svg>Parche</button>
+  <button id="nav-noche" data-s="noche" onclick="go('noche')" style="display:none"><i class="viva"></i><svg class="ic"><use href="#i-bolt"/></svg>Noche</button>
   <button data-s="lista" onclick="go('lista')"><svg class="ic"><use href="#i-list"/></svg>Lista</button>
   <button data-s="perfil" onclick="go('perfil')"><svg class="ic"><use href="#i-gear"/></svg>Perfil</button>
 </div></nav>
@@ -458,7 +492,12 @@ function render(){
     $('xpbar').innerHTML=`<div class="bar"><i style="width:${nv.into/nv.need*100}%"></i></div><small><span>Nivel ${nv.l}</span><span>${nv.into} / ${nv.need} XP</span></small>`;
     $('carta-hint').innerHTML=`El overall solo sube jugando. <a href="#" onclick="go('partido');return false" style="color:var(--yellow)">Registrar partido →</a>`;
   }else{$('xpbar').innerHTML='';$('carta-hint').innerHTML=`Arma tu perfil en <a href="#" onclick="go('perfil');return false" style="color:var(--yellow)">Perfil</a>. El resto se gana en la cancha.`}
-  if(S.night&&!S.night.fin)$('carta-hint').innerHTML=`🔴 Hay una noche en curso — <a href="#" onclick="go('noche');return false" style="color:var(--yellow)">volver a la reta #${S.night.reta}</a>`;
+  if(S.night&&!S.night.fin)$('carta-hint').innerHTML=`Hay una noche en curso — <a href="#" onclick="go('noche');return false" style="color:var(--yellow)">volver al cotejo número ${S.night.reta}</a>`;
+  // la noche tiene su propia pestaña mientras exista; asi no se pierde al navegar
+  const nb=$('nav-noche'),viva=!!S.night;
+  nb.style.display=viva?'flex':'none';
+  document.querySelector('nav .in').classList.toggle('n6',viva);
+  if(viva)nb.querySelector('.viva').style.display=S.night.fin?'none':'block';
   const r=rachaCalc();
   $('racha').innerHTML=r>1?`Racha <b>${r} 🔥</b>`:'';
   const w=semana();
@@ -706,7 +745,7 @@ function armar(){
   const jug=poolHoy().filter(j=>asisSel[j.n]!==false);
   if(jug.length<TAM*2){toast('Mínimo '+TAM*2+' para armar dos equipos');return}
   const nT=Math.floor(jug.length/TAM);
-  // los que sobran esperan la primera reta (al azar, para que sea justo)
+  // los que sobran esperan el primer cotejo (al azar, para que sea justo)
   const barajado=[...jug].sort(()=>Math.random()-.5);
   const espera=barajado.slice(nT*TAM);
   const juegan=barajado.slice(0,nT*TAM);
@@ -791,14 +830,14 @@ function pintarEqs(){
     return `<div class="sec" style="margin-top:18px">Equipo ${chipS(NOMN[k])}${NOMN[k]} <span style="letter-spacing:0;text-transform:none">Prom. ${Math.round(ps[k])}</span></div>
     ${e.map(j=>`<div class="pl"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}
     ${verAlin?alineacionHTML(e,NOMN[k]):''}`}).join('')
-    +(espera.length?`<div class="sec" style="margin-top:18px">Esperan la primera reta</div>${espera.map(j=>`<div class="pl" style="opacity:.6"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`:'')
+    +(espera.length?`<div class="sec" style="margin-top:18px">Esperan el primer cotejo</div>${espera.map(j=>`<div class="pl" style="opacity:.6"><div class="av">${j.pos}</div><div class="n">${esc(j.n)}</div><div class="st">${j.ovr}</div></div>`).join('')}`:'')
     +`<button class="btn ghost sm" onclick="toggleAlin()"><svg class="ic"><use href="#i-flag"/></svg>${verAlin?'Ocultar alineación':'Ver alineación en la cancha'}</button>
     <button class="btn ghost sm" onclick="armar()"><svg class="ic"><use href="#i-shuffle"/></svg>Volver a barajar</button>
     <button class="btn" onclick="startNoche()"><svg class="ic"><use href="#i-play"/></svg>Arrancar la noche</button>
     <p style="font-size:12px;color:var(--chalk-dim);margin-top:10px">${eqs.length} equipos de ${TAM}. Diferencia entre el más fuerte y el más flojo: ${Math.round(Math.max(...ps)-Math.min(...ps))} puntos de promedio.</p>`;
 }
 
-/* ===== la noche: retas en vivo ===== */
+/* ===== la noche: cotejos en vivo ===== */
 const NOMN=['NARANJA','VERDE','BLANCO','AZUL','ROJO','NEGRO'];
 const COLS={'NARANJA':'#F08A24','VERDE':'#C8FF32','BLANCO':'#F7F7F2','AZUL':'#3E7BFA','ROJO':'#E5432F','NEGRO':'#2A2A2A'};
 const chip=n=>`<i class="chip" style="background:${COLS[n]||'#888'}"></i>`;
@@ -808,45 +847,90 @@ function startNoche(){
   const teams=ultEqs.eqs.map((e,k)=>({nom:NOMN[k],players:e,racha:0}));
   const st={};teams.forEach(t=>t.players.forEach(p=>st[p.n]={j:0,g:0,mejor:0}));
   ultEqs.espera.forEach(p=>st[p.n]={j:0,g:0,mejor:0});
-  S.night={teams,espera:ultEqs.espera,court:[0,1],queue:teams.map((_,k)=>k).slice(2),reta:1,st,fin:false};
+  S.night={teams,espera:ultEqs.espera,court:[0,1],queue:teams.map((_,k)=>k).slice(2),reta:1,st,fin:false,marc:[0,0],hist:[]};
   save();go('noche')}
-function ganaReta(w){
+function ganaCotejo(w){
   const N=S.night,[a,b]=N.court,gan=N.court[w],per=N.court[1-w];
   const G=N.teams[gan],P=N.teams[per];
   G.racha++;P.racha=0;
   [a,b].forEach(k=>N.teams[k].players.forEach(p=>N.st[p.n].j++));
   G.players.forEach(p=>{N.st[p.n].g++;N.st[p.n].mejor=Math.max(N.st[p.n].mejor,G.racha)});
+  N.hist=N.hist||[];
+  N.hist.push({c:N.reta,gan:G.nom,per:P.nom,gg:(N.marc||[0,0])[w],gp:(N.marc||[0,0])[1-w]});
+  N.marc=[0,0];
   N.reta++;
   if(N.queue.length){N.queue.push(per);N.court=[gan,N.queue.shift()]}
   save();renderNoche();
-  toast(`Reta para ${G.nom} · racha ${G.racha} 🔥`)}
+  toast(`Cotejo para ${G.nom} · racha ${G.racha}`)}
+function golCotejo(i,d){const N=S.night;if(!N)return;N.marc=N.marc||[0,0];
+  N.marc[i]=Math.max(0,Math.min(30,N.marc[i]+d));save();
+  const el=$('mc-'+i);if(el)el.textContent=N.marc[i]}
+/* todo esto se calcula del historial, no se guarda */
+function vivo(N){
+  const h=N.hist||[];
+  const ganados=n=>h.filter(x=>x.gan===n).length;
+  const enracha=[...N.teams].filter(t=>t.racha>0).sort((a,b)=>b.racha-a.racha)[0]||null;
+  const manda=[...N.teams].map(t=>({t,w:ganados(t.nom)})).sort((a,b)=>b.w-a.w)[0];
+  const aguanta=Object.entries(N.st).filter(([,v])=>v.mejor>0).sort((x,y)=>y[1].mejor-x[1].mejor||y[1].g-x[1].g)[0]||null;
+  const goles=h.reduce((a,x)=>a+(x.gg||0)+(x.gp||0),0);
+  return {h,enracha,manda,aguanta,goles,jugados:h.length};
+}
 function renderNoche(){
   const N=S.night;if(!N){$('noche-box').innerHTML='<div class="empty">No hay noche activa. Arma los equipos primero.</div>';return}
   if(N.fin){renderCierre();return}
   const [a,b]=N.court,TA=N.teams[a],TB=N.teams[b];
-  $('noche-h').textContent='Reta #'+N.reta;
-  const tj=t=>{const k=N.teams.indexOf(t);
+  $('noche-h').textContent='Cotejo número '+N.reta;
+  N.marc=N.marc||[0,0];N.hist=N.hist||[];
+  const tj=t=>{const k=N.teams.indexOf(t),i=N.court.indexOf(k);
     return `<div class="vs-col ${t.racha?'hot':''}"><h4>${chip(t.nom)}${t.nom}</h4>
-    <div class="rr">${t.racha?`racha ${t.racha} 🔥`:'&nbsp;'}</div>
-    ${t.players.map(p=>`<div class="nm">${esc(p.n)}</div>`).join('')}
-    <button class="btn" onclick="ganaReta(${N.court.indexOf(k)})">Ganó</button></div>`};
-  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El <b style="color:var(--chalk)">planillero de la noche</b> marca quién ganó cada reta.</p>
+    <div class="rr">${t.racha?`racha ${t.racha}`:'&nbsp;'}</div>
+    <div class="nms">${t.players.map(p=>`<div class="nm">${esc(p.n)}</div>`).join('')}</div>
+    <div class="sep"></div>
+    <div class="marc"><button onclick="golCotejo(${i},-1)" aria-label="Quitar gol">−</button><b id="mc-${i}">${N.marc[i]}</b><button onclick="golCotejo(${i},1)" aria-label="Sumar gol">+</button></div>
+    <button class="btn" onclick="ganaCotejo(${i})">Ganó</button></div>`};
+  $('noche-box').innerHTML=`<p style="color:var(--chalk-dim);font-size:13px;margin:4px 0 12px">A dos goles, el que gana se queda. El <b style="color:var(--chalk)">planillero de la noche</b> pone el marcador y marca quién ganó cada cotejo.</p>
     <div class="vs-wrap">${tj(TA)}<div class="vs-mid">VS</div>${tj(TB)}</div>
     ${N.queue.length?`<div class="sec">Esperan turno</div>${N.queue.map(k=>`<div class="pl" style="opacity:.6"><div class="av">${N.teams[k].racha||'·'}</div><div class="n">${chip(N.teams[k].nom)}${N.teams[k].nom}<small>${N.teams[k].players.map(p=>p.n.replace(' (tú)','')).join(', ')}</small></div></div>`).join('')}`:''}
+    ${vivoHTML(N)}
     <button class="btn ghost" onclick="S.night.fin=true;save();renderNoche()"><svg class="ic"><use href="#i-flag"/></svg>Cerrar la noche</button>`}
+function vivoHTML(N){
+  const v=vivo(N);
+  if(!v.jugados)return `<div class="sec">Cómo va la noche</div>
+    <div class="empty">Todavía no se juega nada. Pongan el marcador y marquen quién ganó.</div>`;
+  return `<div class="sec">Cómo va la noche</div>
+  <div class="viv">
+    <div class="t ${v.enracha?'hot':''}"><small>Enrachado</small><b>${v.enracha?esc(v.enracha.nom):'Nadie'}</b>
+      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.enracha?`${v.enracha.racha} cotejo${v.enracha.racha!==1?'s':''} seguido${v.enracha.racha!==1?'s':''}`:'todos van perdiendo por turnos'}</small></div>
+    <div class="t"><small>Va mandando</small><b>${esc(v.manda.t.nom)}</b>
+      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.manda.w} ganado${v.manda.w!==1?'s':''} de ${v.jugados}</small></div>
+    <div class="t"><small>Aguanta la cancha</small><b>${v.aguanta?esc(v.aguanta[0].replace(' (tú)','')):'—'}</b>
+      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">${v.aguanta?`${v.aguanta[1].mejor} seguidos sin salir`:'nadie repite todavía'}</small></div>
+    <div class="t"><small>Goles</small><b>${v.goles}</b>
+      <small style="text-transform:none;letter-spacing:0;margin:2px 0 0">en ${v.jugados} cotejo${v.jugados!==1?'s':''}</small></div>
+  </div>
+  <div class="sec">Cotejos jugados</div>
+  ${v.h.slice().reverse().map(x=>`<div class="cot"><span>Cotejo ${x.c}</span>
+    <span class="mk">${chip(x.gan)}${esc(x.gan)} ${x.gg}<em>–</em>${x.gp} ${esc(x.per)}</span></div>`).join('')}`;
+}
 function renderCierre(){
   const N=S.night;
-  if(!N.goles)N.goles={};
+  if(!N.goles)N.goles={};N.hist=N.hist||[];
   const rows=Object.entries(N.st).filter(([,v])=>v.j>0).sort((x,y)=>y[1].mejor-x[1].mejor||y[1].g-x[1].g);
   const rey=rows[0];
+  // el rey es del que aguanta; el jugador de la noche es del que la mete
+  const gol=rows.map(([n,v])=>({n,g:N.goles[n]||0,m:v.mejor})).sort((a,b)=>b.g-a.g||b.m-a.m)[0];
+  const mvp=gol&&gol.g>0?gol:null;
+  const v=vivo(N);
   $('noche-h').textContent='Fin de la noche';
   $('noche-box').innerHTML=`
-    <div class="gan"><span><svg class="ic"><use href="#i-crown"/></svg> Rey de la cancha</span><b>${rey?esc(rey[0]):'—'}</b><span>${rey?`aguantó ${rey[1].mejor} retas seguidas`:''}</span></div>
+    <div class="gan"><span><svg class="ic"><use href="#i-crown"/></svg> Rey de la cancha</span><b>${rey?esc(rey[0]):'—'}</b><span>${rey?`aguantó ${rey[1].mejor} cotejos seguidos`:''}</span></div>
+    ${mvp?`<div class="gan"><span><svg class="ic"><use href="#i-target"/></svg> Jugador de la noche</span><b>${esc(mvp.n.replace(' (tú)',''))}</b><span>${mvp.g} gol${mvp.g!==1?'es':''} de la noche</span></div>`:''}
+    ${v.jugados?`<div class="sec">Los cotejos</div>${v.h.slice().reverse().map(x=>`<div class="cot"><span>Cotejo ${x.c}</span><span class="mk">${chip(x.gan)}${esc(x.gan)} ${x.gg}<em>–</em>${x.gp} ${esc(x.per)}</span></div>`).join('')}`:''}
     <div class="sec">Goles de la noche <span style="letter-spacing:0;text-transform:none;font-size:11px">los pone el planillero</span></div>
     ${rows.map(([n])=>`<div class="step" style="padding:8px 12px"><div class="lb" style="font-size:13.5px">${esc(n)}</div>
       <div class="ct"><button onclick="golN('${esc(n)}',-1)">−</button><b id="gn-${btoa(unescape(encodeURIComponent(n))).replace(/=/g,'')}">${N.goles[n]||0}</b><button onclick="golN('${esc(n)}',1)">+</button></div></div>`).join('')}
     <div class="sec">Tabla de la noche</div>
-    <table class="tabla"><tr><th>Jugador</th><th>Retas</th><th>Gan.</th><th>Racha</th></tr>
+    <table class="tabla"><tr><th>Jugador</th><th>Cotejos</th><th>Gan.</th><th>Racha</th></tr>
     ${rows.map(([n,v])=>`<tr class="${S.perfil&&n.startsWith(S.perfil.nombre)?'me':''}"><td>${esc(n)}</td><td>${v.j}</td><td>${v.g}</td><td>${v.mejor}</td></tr>`).join('')}</table>
     <button class="btn" onclick="guardarNoche()">Guardar la noche</button>
     <button class="btn ghost sm" onclick="if(confirm('¿Descartar la noche sin guardar?')){S.night=null;save();go('parche')}">Descartar</button>`}
@@ -879,6 +963,7 @@ function applyTheme(){
   const t=(S.prefs&&S.prefs.theme)||(matchMedia('(prefers-color-scheme:light)').matches?'light':'dark');
   document.body.classList.toggle('light',t==='light');
   $('b-th').innerHTML=t==='light'?'<svg class="ic"><use href="#i-moon"/></svg>':'<svg class="ic"><use href="#i-sun"/></svg>';
+  $('b-th').classList.toggle('on',t==='light');
   $('thc').content=t==='light'?'#FFFFFF':'#000000';
 }
 function themeToggle(){S.prefs=S.prefs||{};
@@ -888,12 +973,13 @@ function themeToggle(){S.prefs=S.prefs||{};
 
 /* ===== música de menú (loop original, Tone.js) ===== */
 let musOn=false,musReady=false;
+function musBtn(){const b=$('b-mus');b.classList.toggle('on',musOn);b.setAttribute('aria-pressed',musOn?'true':'false')}
 function musToggle(){
-  if(musOn){Tone.Transport.stop();musOn=false;$('b-mus').style.opacity=.55;return}
-  if(musReady){Tone.start();Tone.Transport.start();musOn=true;$('b-mus').style.opacity=1;return}
+  if(musOn){Tone.Transport.stop();musOn=false;musBtn();return}
+  if(musReady){Tone.start();Tone.Transport.start();musOn=true;musBtn();return}
   const sc=document.createElement('script');
   sc.src='https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js';
-  sc.onload=()=>{setupMusic();musReady=true;Tone.start();Tone.Transport.start();musOn=true;$('b-mus').style.opacity=1;toast('Música de menú 🎛️')};
+  sc.onload=()=>{setupMusic();musReady=true;Tone.start();Tone.Transport.start();musOn=true;musBtn();toast('Suena la cancha')};
   sc.onerror=()=>toast('No cargó el audio (¿sin internet?)');
   document.head.appendChild(sc);
 }

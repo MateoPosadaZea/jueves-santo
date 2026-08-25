@@ -4,14 +4,15 @@ App del parche de fútbol de los jueves. Prototipo de laboratorio, no producto c
 
 ## Qué es
 
-Un solo archivo `index.html` (~55KB) servido por GitHub Pages en
+`index.html` + `manifest.webmanifest` + `marca/`, servidos por GitHub Pages en
 https://mateoposadazea.github.io/jueves-santo/
 Se usa desde el celular como PWA (agregar a pantalla de inicio).
 
 ## Stack actual
 
 - HTML/CSS/JS vanilla en un solo archivo. Sin build, sin dependencias, sin framework.
-- Persistencia: `localStorage` (clave `cancha_v2`), con fallback en memoria.
+- Persistencia: `localStorage` (clave `cancha_v2`), con fallback en memoria. La noche en curso
+  vive en `S.night` y sobrevive recargas: nunca se pierde por navegar a otra pantalla.
 - Tone.js por CDN, solo para la música de menú (carga diferida al primer toque).
 - Fuentes: Hanken Grotesk (títulos/números) + Be Vietnam Pro (texto), vía Google Fonts.
 - Iconografía: sprite SVG inline con `<symbol>` + `<use href="#i-...">`. Sin emojis en UI.
@@ -32,15 +33,23 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 1. **Carta** — carta del jugador (overall, stats, avatar), barra de XP, misiones semanales, temporada.
 2. **Partido** — registro manual de un partido suelto (resultado, goles, asistencias, rival).
 3. **Parche** — tabla del grupo, rivalidades (head-to-head calculado), y entrada a Armar equipos.
-4. **Armar equipos → Noche** — asistencia, equipos de 4 equilibrados por overall, y modo noche en vivo.
-5. **Lista** — lista del jueves: confirmó → pagó, 12 cupos, lista de espera, recordatorio para WhatsApp.
-6. **Perfil** — datos e editor de avatar.
+4. **Armar equipos** — asistencia, equipos de 4 equilibrados por overall, y **ver alineación**:
+   cada equipo dibujado en una cancha, rombo 1-2-1, derivado de las posiciones (`alinear()`).
+5. **La noche** — pantalla propia, con su pestaña en el nav mientras haya noche viva. Cotejos en vivo:
+   marcador por cotejo, quién ganó, quién espera turno y estadísticas al vuelo (enrachado, va mandando,
+   aguanta la cancha, goles). Se puede salir y volver sin perder nada.
+6. **Lista** — lista del jueves: confirmó → pagó, 12 cupos, lista de espera, recordatorio para WhatsApp.
+7. **Perfil** — datos y editor de avatar. La posición se elige por frase ("me gusta tapar",
+   "palomero"), no por sigla; internamente sigue siendo un código de 3 letras (ver `POS`).
 
 ## Modelo social (decisiones tomadas, no cambiar sin hablarlo)
 
-- **Planillero**: una persona por noche lleva el celular. Marca quién ganó cada reta
-  (lo hace el equipo que espera, no el que juega) y al cerrar la noche registra los goles de todos.
-- **Rey de la cancha**: quien aguantó más retas seguidas sin salir. Es el premio de la noche.
+- **Planillero**: una persona por noche lleva el celular. Pone el marcador y marca quién ganó cada
+  **cotejo** (lo hace el equipo que espera, no el que juega) y al cerrar la noche registra los goles de todos.
+- **Vocabulario**: se dice *cotejo*, no *reta*. En el código el contador sigue llamándose `N.reta`
+  a propósito, para no romper las noches ya guardadas en `localStorage`.
+- **Rey de la cancha**: quien aguantó más cotejos seguidos sin salir. Es el premio de la noche.
+- **Jugador de la noche**: premio aparte, por goles (desempate por racha). No reemplaza al rey.
 - **Pagos**: Nequi, fuera de la app. La app solo es el tablero de quién pagó. Nunca integrar pasarela.
 - **Anti-trampa**: todo público dentro del parche + inflar tu overall te empareja contra mejores.
 - **Alcance**: solo el jueves, solo este grupo. Nada de torneos abiertos, matchmaking con
@@ -54,6 +63,10 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 - Sin degradados. Color plano + línea.
 - Isotipo: jugador rematando de volea + punto verde (el balón). Archivos: `js-icono.svg`,
   `js-icono-verde.svg`, `js-lockup.svg`.
+- Pantalla de inicio / PWA: `js-icono-app.svg` (el isotipo al 80%, para que la máscara no recorte
+  el balón) y los PNG `marca/icon-180|192|512.png`, declarados en `manifest.webmanifest`.
+  Si cambia el isotipo hay que **regenerar los PNG**; el navegador no los deriva del SVG.
+- **Tono**: el humor del app es negro y autoburlón, de parche. Ver las frases de posición en `POS`.
 
 ## Fase siguiente (cuando el grupo valide)
 
