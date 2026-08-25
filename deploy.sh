@@ -11,6 +11,15 @@ if [ -z "$MSG" ]; then
   exit 1
 fi
 
+# Sella la version en index.html para saber, desde el celular, si la recarga trajo lo nuevo.
+# Se hace con archivo temporal porque el sed de macOS y el de Linux no comparten la opcion -i.
+if grep -q "^const BUILD=" index.html 2>/dev/null; then
+  SELLO="$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+  TMP="$(mktemp)"
+  sed "s|^const BUILD='.*';|const BUILD='$SELLO';|" index.html > "$TMP" && mv "$TMP" index.html
+  echo "Sello de version: $SELLO"
+fi
+
 BRANCH="$(git branch --show-current)"
 if [ -z "$BRANCH" ]; then
   echo "No estas en una rama (HEAD suelto). Corre: git checkout main" >&2

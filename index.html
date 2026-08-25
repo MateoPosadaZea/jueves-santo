@@ -26,6 +26,16 @@
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
+html{overscroll-behavior-y:contain}
+#ptr{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:center;gap:9px;
+  height:0;overflow:hidden;background:var(--night);color:var(--chalk-dim);pointer-events:none;
+  font-size:10px;letter-spacing:.13em;text-transform:uppercase;transition:height .2s ease}
+#ptr.arrastrando{transition:none}
+#ptr .ic{width:17px;height:17px;transition:transform .2s ease}
+#ptr.listo{color:var(--yellow)}
+#ptr.listo .ic{transform:rotate(180deg)}
+#ptr.girando .ic{animation:gira .8s linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
 body{font-family:var(--body);background:var(--night);color:var(--chalk);font-size:15px;line-height:1.45;
   }
 button,input,select{font:inherit;color:inherit}
@@ -48,7 +58,7 @@ main{flex:1;padding:22px 18px 92px}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.94);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
+nav{position:fixed;bottom:0;left:0;right:0;background:rgba(0,0,0,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:8px 0 max(10px,env(safe-area-inset-bottom))}
 nav .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
 nav .in.n6{grid-template-columns:repeat(6,1fr)}
 nav button{position:relative}
@@ -277,6 +287,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5.4v13.2M5.4 12h13.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
 <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.8 12.6l4.8 4.8L19.2 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>
+<div id="ptr" aria-hidden="true"><svg class="ic"><use href="#i-shuffle"/></svg><span id="ptr-tx">Deslice para recargar</span></div>
 <div class="app">
 <header>
   <div class="brand" style="display:flex;align-items:center;gap:8px"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="30" height="30"><rect width="120" height="120" rx="30" fill="#1C5E36"/><path d="M56 46L60 68" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M60 68L76 48" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M76 48L90 30" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M60 68L48 86" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M48 86L34 96" stroke="#F7F7F2" stroke-width="9.5" stroke-linecap="round" fill="none"/><path d="M56 46L40 44" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M40 44L28 54" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M56 46L72 32" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><path d="M72 32L78 20" stroke="#F7F7F2" stroke-width="8.5" stroke-linecap="round" fill="none"/><circle cx="54" cy="32" r="8.4" fill="#F7F7F2"/><circle cx="96" cy="16" r="9" fill="#C8FF32"/></svg><span>Jueves Santo</span></div>
@@ -387,7 +398,8 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <select id="f-pie"><option>Derecho</option><option>Izquierdo</option><option>Ambos</option></select>
   <label>Barrio / localidad</label><input id="f-barrio" placeholder="Chapinero, Suba, Kennedy…">
   <button class="btn" onclick="savePerfil()">Guardar</button>
-  <button class="btn ghost sm" style="margin-top:20px;color:var(--red)" onclick="if(confirm('¿Borrar todo? Queda como al principio.')){try{localStorage.removeItem('cancha_v2')}catch(e){};location.reload()}">Borrar todo y arrancar de cero</button>
+  <p id="f-build" style="font-size:11px;color:var(--chalk-dim);margin-top:22px;text-align:center"></p>
+  <button class="btn ghost sm" style="margin-top:10px;color:var(--red)" onclick="if(confirm('¿Borrar todo? Queda como al principio.')){try{localStorage.removeItem('cancha_v2')}catch(e){};location.reload()}">Borrar todo y arrancar de cero</button>
 </section>
 
 </main>
@@ -403,6 +415,14 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="toast" id="toast"></div>
 
 <script>
+const BUILD='2026-08-25T01:17:39Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
+function buildTxt(){
+  if(BUILD==='dev')return 'versión local, sin publicar';
+  const d=new Date(BUILD);
+  if(isNaN(d))return BUILD;
+  return 'Versión del '+d.toLocaleDateString('es-CO',{day:'numeric',month:'short'})
+    +' · '+d.toLocaleTimeString('es-CO',{hour:'numeric',minute:'2-digit'});
+}
 /* ===== datos ===== */
 const STATS=[['RIT','Ritmo'],['TIR','Tiro'],['PAS','Pase'],['REG','Regate'],['DEF','Defensa'],['FIS','Físico']];
 /* como se lee cada posicion: [nombre corto, la frase, el recordatorio] */
@@ -596,6 +616,7 @@ function avRender(){
 function renderPerfilForm(){const p=S.perfil;
   if(p&&!$('f-nombre').value){$('f-nombre').value=p.nombre;$('f-pos').value=p.pos;$('f-num').value=p.num;$('f-pie').value=p.pie;$('f-barrio').value=p.barrio||''}
   posHint();
+  const b=$('f-build');if(b)b.textContent=buildTxt();
   if(!avEdit)avInit();else avRender()}
 function savePerfil(){const nombre=$('f-nombre').value.trim();if(!nombre){toast('¿Y usted cómo se llama, parce?');return}
   const prev=S.perfil;
@@ -957,6 +978,44 @@ function guardarNoche(){
     toast(l>lvlB?`+${xp} XP · ¡Nivel ${l}! 🎉`:`+${xp} XP por la noche`);
   }else{S.night=null;save();go('parche');toast('Noche guardada')}
 }
+
+/* ===== deslizar hacia abajo para recargar =====
+   En la pantalla de inicio no hay barra de direcciones, así que este es el único
+   gesto para traerse la versión nueva. Funciona igual en iOS y en Android. */
+(function(){
+  const UMBRAL=70, TOPE=110, FRENO=.5;
+  let y0=0,jalado=0,activo=false;
+  const caja=()=>document.getElementById('ptr');
+  const pintar=h=>{const p=caja();if(!p)return;p.style.height=h+'px';p.classList.toggle('listo',h>=UMBRAL)};
+  const arriba=()=>(window.scrollY||document.documentElement.scrollTop||0)<=0;
+  addEventListener('touchstart',e=>{
+    if(e.touches.length!==1||!arriba())return;
+    y0=e.touches[0].clientY;jalado=0;activo=true;
+    const p=caja();if(p)p.classList.add('arrastrando');
+  },{passive:true});
+  addEventListener('touchmove',e=>{
+    if(!activo)return;
+    const d=e.touches[0].clientY-y0;
+    if(d<=0||!arriba()){activo=false;pintar(0);return}
+    jalado=Math.min(d*FRENO,TOPE);
+    e.preventDefault();                       // frena el rebote del navegador
+    pintar(jalado);
+    const t=document.getElementById('ptr-tx');
+    if(t)t.textContent=jalado>=UMBRAL?'Suelte para recargar':'Deslice para recargar';
+  },{passive:false});
+  const soltar=()=>{
+    if(!activo)return;activo=false;
+    const p=caja();if(!p)return;
+    p.classList.remove('arrastrando');
+    if(jalado>=UMBRAL){
+      p.classList.add('girando');
+      const t=document.getElementById('ptr-tx');if(t)t.textContent='Recargando…';
+      setTimeout(()=>location.reload(),350);
+    }else pintar(0);
+  };
+  addEventListener('touchend',soltar,{passive:true});
+  addEventListener('touchcancel',soltar,{passive:true});
+})();
 
 /* ===== tema claro/oscuro ===== */
 function applyTheme(){
