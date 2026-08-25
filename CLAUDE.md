@@ -37,8 +37,8 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 ## Pantallas
 
 1. **Carta** — carta del jugador (overall, stats, avatar), barra de XP, misiones semanales, temporada.
-2. **Partido** — registro manual de un partido suelto (resultado, goles, asistencias, rival).
-3. **Parche** — tabla del grupo, rivalidades (head-to-head calculado), y entrada a Armar equipos.
+2. **Partido** — registro manual de un partido suelto (resultado, goles, asistencias, valla invicta).
+3. **Parche** — tabla del grupo y entrada a Armar equipos.
 4. **Armar equipos** — asistencia, equipos de 4 equilibrados por overall, y **ver alineación**:
    cada equipo dibujado en una cancha, rombo 1-2-1, derivado de las posiciones (`alinear()`).
 5. **La noche** — pantalla propia, con su pestaña en el nav mientras haya noche viva. Cotejos en vivo:
@@ -58,6 +58,9 @@ Se usa desde el celular como PWA (agregar a pantalla de inicio).
 - **Jugador de la noche**: premio aparte, por goles (desempate por racha). No reemplaza al rey.
 - **Pagos**: Nequi, fuera de la app. La app solo es el tablero de quién pagó. Nunca integrar pasarela.
 - **Anti-trampa**: todo público dentro del parche + inflar tu overall te empareja contra mejores.
+- **Sin rivales**: no se anota contra quién se jugó, y no hay head-to-head. Los equipos se
+  rebarajan cada jueves, así que "el rival" no existe como entidad estable. Se quitó a propósito;
+  no volver a agregarlo sin hablarlo.
 - **Alcance**: solo el jueves, solo este grupo. Nada de torneos abiertos, matchmaking con
   desconocidos, ni suscripciones mensuales. Se cortaron a propósito.
 

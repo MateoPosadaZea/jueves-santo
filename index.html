@@ -318,8 +318,6 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <div class="step"><div class="lb"><svg class="ic"><use href="#i-ball"/></svg>Goles</div><div class="ct"><button onclick="stp('g',-1)">−</button><b id="c-g">0</b><button onclick="stp('g',1)">+</button></div></div>
   <div class="step"><div class="lb"><svg class="ic"><use href="#i-target"/></svg>Asistencias</div><div class="ct"><button onclick="stp('a',-1)">−</button><b id="c-a">0</b><button onclick="stp('a',1)">+</button></div></div>
   <div class="step" id="valla-row"><div class="lb"><svg class="ic"><use href="#i-glove"/></svg>No me metieron ni una</div><div class="ct"><button onclick="tglValla()" id="valla-btn" style="width:auto;padding:0 16px;border-radius:999px;font-size:13px;font-family:var(--body)">No</button></div></div>
-  <label>¿Contra quién fue? (si se acuerda)</label>
-  <input id="p-rival" placeholder="Los Pelaos, Barrio Unido…" maxlength="24" list="rivales-dl"><datalist id="rivales-dl"></datalist>
   <button class="btn" onclick="regPartido()">Guardar la vuelta</button>
   <div class="sec">Las últimas</div>
   <div id="hist"></div>
@@ -332,8 +330,6 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
   <div class="sec">Este mes</div>
   <table class="tabla" id="lb"></table>
   <p style="font-size:12px;color:var(--chalk-dim);margin-top:14px">Los otros son inventados, pa' probar cómo se siente. En la app de verdad serían sus llaves, cada uno metiendo lo suyo.</p>
-  <div class="sec">Cuentas pendientes</div>
-  <div id="rivales"></div>
 </section>
 
 <section class="screen" id="s-armar">
@@ -415,7 +411,7 @@ body.light .mision .xp,body.light .row .t span,body.light .pl .st.p{color:#1C5E3
 <div class="toast" id="toast"></div>
 
 <script>
-const BUILD='2026-08-25T01:17:39Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
+const BUILD='2026-08-25T01:57:31Z';  /* deploy.sh lo reemplaza con la fecha real al publicar */
 function buildTxt(){
   if(BUILD==='dev')return 'versión local, sin publicar';
   const d=new Date(BUILD);
@@ -528,26 +524,11 @@ function render(){
   $('valla-row').style.display=p&&(p.pos==='ARQ'||p.pos==='DEF')?'flex':'none';
   $('hist').innerHTML=S.partidos.length?S.partidos.slice(0,6).map(x=>{
     const lbl={g:'Victoria',e:'Empate',p:'Derrota'}[x.res];
-    return `<div class="row"><div class="t">${lbl}${x.rival?' vs '+esc(x.rival):''}<span>+${x.xp} XP</span></div><div class="s">${x.g} gol${x.g!==1?'es':''} · ${x.a} asist. · ${new Date(x.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div></div>`}).join('')
+    return `<div class="row"><div class="t">${lbl}<span>+${x.xp} XP</span></div><div class="s">${x.g} gol${x.g!==1?'es':''} · ${x.a} asist. · ${new Date(x.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div></div>`}).join('')
     :'<div class="empty">Todavía nada, parce. El primero es el que arranca la vuelta.</div>';
   // parche
   const rows=[...PARCHE.map(f=>({...f,me:false})),p?{n:p.nombre,pos:p.pos,pj:h.pj,g:h.g,a:h.a,racha:r,xp:p.xp,me:true}:null].filter(Boolean).sort((a,b)=>b.xp-a.xp);
   $('lb').innerHTML=`<tr><th>Jugador</th><th>PJ</th><th>G</th><th>A</th><th>🔥</th><th>XP</th></tr>`+rows.map((f,i)=>`<tr class="${f.me?'me':''}"><td>${i+1}. ${esc(f.n)}${f.me?' (yo)':''}</td><td>${f.pj}</td><td>${f.g}</td><td>${f.a}</td><td>${f.racha||''}</td><td>${f.xp}</td></tr>`).join('');
-  // rivalidades: head-to-head por rival, calculado de los partidos
-  const rivMap={};
-  S.partidos.forEach(x=>{if(!x.rival)return;const k=x.rival.toLowerCase();
-    if(!rivMap[k])rivMap[k]={n:x.rival,g:0,e:0,p:0,ult:null};
-    rivMap[k][x.res]++;if(!rivMap[k].ult)rivMap[k].ult=x});
-  const rivs=Object.values(rivMap).sort((a,b)=>(b.g+b.e+b.p)-(a.g+a.e+a.p));
-  $('rivales').innerHTML=rivs.length?rivs.map(v=>{
-    const tot=v.g+v.e+v.p,dom=v.g>v.p?'g':v.p>v.g?'p':'e';
-    const tag={g:'<span class="tag g">Los tiene marcados</span>',p:'<span class="tag r">Lo tienen marcado</span>',e:'<span class="tag y">Van parejos</span>'}[dom];
-    const ult={g:'victoria',e:'empate',p:'derrota'}[v.ult.res];
-    return `<div class="row"><div class="t">vs ${esc(v.n)}<span>${v.g}–${v.e}–${v.p}</span></div>
-      <div class="s">${tot} partido${tot!==1?'s':''} · último: ${ult} el ${new Date(v.ult.t).toLocaleDateString('es-CO',{day:'numeric',month:'short'})}</div>
-      <div class="tags">${tag}</div></div>`}).join('')
-    :'<div class="empty">Ponga el "¿contra quién fue?" cuando meta sus partidos y aquí sale la cuenta: ganadas–empatadas–perdidas contra cada uno.</div>';
-  $('rivales-dl').innerHTML=rivs.map(v=>`<option value="${esc(v.n)}">`).join('');
   // torneos
   $('torneos-list').innerHTML=TORNEOS.map(t=>{const ins=S.inscritos.includes(t.id);const ocup=t.equipos-t.cupos+(ins?1:0);return `<button class="row" onclick="verTorneo('${t.id}')">
     <div class="t">${t.nombre}<span>${cop(t.precio)}</span></div>
@@ -579,14 +560,14 @@ function regPartido(){
   const wBefore=MISIONES.filter(m=>m.check(semana()));
   const lvlBefore=nivel(S.perfil.xp).l;
   let xp=50+{g:30,e:10,p:0}[form.res]+form.g*20+form.a*15+(form.valla?25:0);
-  const par={t:Date.now(),res:form.res,g:form.g,a:form.a,valla:form.valla,rival:$('p-rival').value.trim(),xp:0};
+  const par={t:Date.now(),res:form.res,g:form.g,a:form.a,valla:form.valla,xp:0};
   S.partidos.unshift(par);
   const h=S.perfil.hist;h.pj++;h.g+=form.g;h.a+=form.a;if(form.valla)h.vallas++;if(form.res==='g')h.v=(h.v||0)+1;
   // misiones nuevas cumplidas dan bonus
   let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
   xp+=bonus;par.xp=xp;S.perfil.xp+=xp;save();
   const lvlAfter=nivel(S.perfil.xp).l;
-  $('p-rival').value='';form={res:null,g:0,a:0,valla:false};$('c-g').textContent=0;$('c-a').textContent=0;
+  form={res:null,g:0,a:0,valla:false};$('c-g').textContent=0;$('c-a').textContent=0;
   ['g','e','p'].forEach(x=>$('r-'+x).classList.remove('sel'));$('valla-btn').textContent='No';$('valla-btn').style.color='';
   go('inicio');
   const ovrEl=$('ovr-n');if(ovrEl)ovrEl.classList.add('up');
@@ -969,7 +950,7 @@ function guardarNoche(){
     const lvlB=nivel(S.perfil.xp).l;
     let xp=25+v.j*8+v.g*10+v.mejor*10+mg*15;
     const res=v.g*2>=v.j?'g':'p';
-    S.partidos.unshift({t:Date.now(),res,g:mg,a:0,valla:false,rival:'',xp,noche:{j:v.j,g:v.g,mejor:v.mejor}});
+    S.partidos.unshift({t:Date.now(),res,g:mg,a:0,valla:false,xp,noche:{j:v.j,g:v.g,mejor:v.mejor}});
     const h=S.perfil.hist;h.pj++;h.g+=mg;if(res==='g')h.v=(h.v||0)+1;
     let bonus=0;MISIONES.forEach(m=>{if(!wBefore.includes(m)&&m.check(semana()))bonus+=m.xp});
     xp+=bonus;S.partidos[0].xp=xp;S.perfil.xp+=xp;
