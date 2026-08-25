@@ -1,0 +1,47 @@
+# --- macOS ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+.AppleDouble
+.LSOverride
+Icon?
+
+# --- Windows / Linux ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+.directory
+
+# --- Editores ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-workspace
+
+# --- Basura tipica al descargar/duplicar archivos ---
+*.orig
+*.rej
+*.bak
+*.tmp
+"* copia*"
+"* copy*"
+"*(1)*"
+"*(2)*"
+
+# --- Dependencias / build (por si algun dia hacen falta) ---
+node_modules/
+.cache/
+dist/
+.env
+.env.*
+!.env.example
+
+# --- Logs ---
+*.log
+npm-debug.log*
